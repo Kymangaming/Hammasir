@@ -1,0 +1,28 @@
+{
+    "name": "هم‌مسیر — برنامه‌ای که با تو پیش می‌رود",
+    "short_name": "هم‌مسیر",
+    "description": "برنامه‌ریز هوشمند کنکور بر اساس ساعت‌های آزاد، تسلط درس‌ها و تاریخ آزمون.",
+    "lang": "fa",
+    "dir": "rtl",
+    "start_url": "./",
+    "scope": "./",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#FAF6EE",
+    "theme_color": "#2E7D6B",
+    "categories": ["education", "productivity"],
+    "icons": [
+      {
+        "src": "./icon.svg",
+        "sizes": "any",
+        "type": "image/svg+xml",
+        "purpose": "any"
+      },
+      {
+        "src": "./icon.svg",
+        "sizes": "any",
+        "type": "image/svg+xml",
+        "purpose": "maskable"
+      }
+    ]
+  }

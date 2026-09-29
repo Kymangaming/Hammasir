@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FAF6EE" id="metaThemeColor">
+<meta name="description" content="هم‌مسیر — برنامه‌ای که با تو پیش می‌رود. برنامه‌ریز هوشمند کنکور.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="هم‌مسیر">
+<title>هم‌مسیر — برنامه‌ای که با تو پیش می‌رود</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="./icon.svg">
+<link rel="apple-touch-icon" href="./icon.svg">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+<style>
+:root{--cream:#FAF6EE;--paper:#FFFFFF;--ink:#2B3A35;--ink2:#54655E;--muted:#8B9A94;--teal:#2E7D6B;--teal-d:#235F51;--teal-soft:#E8F3EF;--teal-line:#D3E7DF;--orange:#DE8A3E;--orange-soft:#FBEEDF;--rose:#C97A6D;--rose-soft:#FAEDEA;--line:#EDE5D8;--shadow:0 1px 2px rgba(43,58,53,.04),0 10px 28px rgba(43,58,53,.06);--r:20px;--field-bg:#FDFCF9;--chip-bg:#FFFFFF;--nav-hover:#F2EDE2;--chip-box:#F4F0E7;--bar-bg:#F0ECE2;--stat-bg:#FBF8F1;--task-done-bg:#F7FAF8;--task-done-border:#E3EEE8;--task-missed-bg:#FDF8F3;--task-missed-border:#F3E3D2;--t-reason-bg:#F8F5EE;--pill-bg:#F2EEE5;--pill-grey-bg:#F1EFE9;--divider-line:#F4F0E7;--ghost-bg:#F4F1E8;--ghost-hover:#ECE7DA;--soft-hover:#DCEBE5;--icon-btn-bg:#F6F2E9;--x-btn-bg:#F5F1E8;--x-btn-hover:#EDE8DC;--day-hover:#FBFDFC;--check-border:#D8D2C4;--steps-bg:#E8E2D6;--toast-bg:#2B3A35;--toast-fg:#FFFFFF;--modal-bg-overlay:rgba(43,58,53,.35);--scroll-track:#EDE8DC;--ai-note-bg:linear-gradient(135deg,#F2F6FE,#EAF1FE);--ai-note-border:#D6E2FB;--ai-note-color:#3157B5;--ai-pill-bg:#EAF1FE;--ai-pill-color:#3157B5;--bn-bg:rgba(255,255,255,.94);--topbar-bg:rgba(250,246,238,.92)}
+[data-theme="dark"]{--cream:#141816;--paper:#1E2422;--ink:#E8E5DE;--ink2:#A8B0AC;--muted:#7D8885;--teal:#4FAE95;--teal-d:#6BC4AC;--teal-soft:#1D322E;--teal-line:#2A4640;--orange:#E89E5A;--orange-soft:#3A2C1E;--rose:#D08878;--rose-soft:#3A2624;--line:#2C3330;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.3);--field-bg:#232A28;--chip-bg:#232A28;--nav-hover:#262E2B;--chip-box:#262E2B;--bar-bg:#2A3230;--stat-bg:#232A28;--task-done-bg:#1B2A25;--task-done-border:#2A4640;--task-missed-bg:#2A2320;--task-missed-border:#3A2C1E;--t-reason-bg:#232A28;--pill-bg:#2A3230;--pill-grey-bg:#262E2B;--divider-line:#2A3230;--ghost-bg:#262E2B;--ghost-hover:#2E3734;--soft-hover:#1D322E;--icon-btn-bg:#262E2B;--x-btn-bg:#262E2B;--x-btn-hover:#2E3734;--day-hover:#232A28;--check-border:#3A4441;--steps-bg:#2A3230;--toast-bg:#E8E5DE;--toast-fg:#141816;--modal-bg-overlay:rgba(0,0,0,.55);--scroll-track:#2A3230;--ai-note-bg:linear-gradient(135deg,#1B2438,#1E2A40);--ai-note-border:#2A3A5A;--ai-note-color:#8AB0F0;--ai-pill-bg:#1B2438;--ai-pill-color:#8AB0F0;--bn-bg:rgba(30,36,34,.94);--topbar-bg:rgba(20,24,22,.92)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Vazirmatn',Tahoma,sans-serif;background:var(--cream);background-image:radial-gradient(1200px 500px at 90% -10%,#EFF7F3 0%,transparent 60%),radial-gradient(900px 400px at 0% 0%,#FDF3E7 0%,transparent 55%);background-attachment:fixed;color:var(--ink);line-height:1.9;font-size:15px;-webkit-font-smoothing:antialiased;transition:background-color .3s,color .3s;overscroll-behavior-y:none}
+[data-theme="dark"] body{background-image:radial-gradient(1200px 500px at 90% -10%,#1A2A24 0%,transparent 60%),radial-gradient(900px 400px at 0% 0%,#2A2018 0%,transparent 55%)}
+h1,h2,h3,h4{margin:0;font-weight:700;line-height:1.6}
+p{margin:0}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none;touch-action:manipulation}
+.topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:var(--topbar-bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top)}
+.topbar-inner{max-width:1080px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:nowrap}
+.brand{display:flex;align-items:center;gap:10px;flex:0 0 auto;min-width:0}
+.brand-mark{width:40px;height:40px;border-radius:13px;overflow:hidden;box-shadow:0 6px 16px rgba(46,125,107,.28);flex:0 0 auto}
+.brand-mark svg{width:100%;height:100%;display:block}
+.brand-text{min-width:0}
+.brand-name{font-weight:800;font-size:16px;letter-spacing:-.2px;line-height:1.3}
+.brand-slogan{font-size:11px;color:var(--muted);margin-top:-2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav{display:flex;gap:4px;overflow-x:auto;flex:1 1 auto;scrollbar-width:none;padding:2px;justify-content:center}
+.nav::-webkit-scrollbar{display:none}
+.nav button{white-space:nowrap;padding:9px 14px;border-radius:12px;color:var(--ink2);font-size:14px;font-weight:500;transition:.18s}
+.nav button:hover{background:var(--nav-hover)}
+.nav button.active{background:var(--teal);color:#fff;font-weight:600;box-shadow:0 4px 12px rgba(46,125,107,.25)}
+.topbar-actions{display:flex;gap:6px;flex:0 0 auto;align-items:center}
+.icon-top{width:42px;height:42px;border-radius:13px;background:var(--ghost-bg);color:var(--ink2);display:grid;place-items:center;font-size:18px;transition:.18s}
+.icon-top:hover{background:var(--ghost-hover)}
+.icon-top:active{transform:scale(.94)}
+#installBtn{display:none;background:linear-gradient(135deg,#5B8DEF,#3D6FD6);color:#fff}
+#installBtn.show{display:grid}
+main{max-width:1080px;margin:0 auto;padding:16px 16px 100px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:45;display:none;background:var(--bn-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right);box-shadow:0 -4px 24px rgba(0,0,0,.05)}
+[data-theme="dark"] .bottom-nav{box-shadow:0 -4px 24px rgba(0,0,0,.35)}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:7px 2px;font-size:10.5px;color:var(--muted);font-weight:600;min-height:58px;transition:.18s;position:relative}
+.bn-item .bn-ico{font-size:20px;line-height:1;transition:.2s}
+.bn-item.active{color:var(--teal-d)}
+.bn-item.active .bn-ico{transform:translateY(-1px) scale(1.1)}
+.bn-item.active::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:26px;height:3px;border-radius:0 0 4px 4px;background:var(--teal)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);transition:background .3s,border-color .3s}
+.card+.card{margin-top:14px}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.card-title{font-size:15.5px;font-weight:700}
+.card-sub{font-size:12.5px;color:var(--muted);font-weight:400}
+.grid{display:grid;gap:14px}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.hero{background:linear-gradient(135deg,var(--paper) 0%,var(--teal-soft) 130%);border:1px solid var(--teal-line)}
+.hero h2{font-size:19px;margin-bottom:4px}
+.hero .date{color:var(--muted);font-size:13px}
+.btn{display:inline-flex;align-items:center;gap:7px;justify-content:center;padding:11px 18px;border-radius:13px;font-size:14px;font-weight:600;background:var(--teal);color:#fff;transition:.18s;box-shadow:0 4px 14px rgba(46,125,107,.22);min-height:44px}
+.btn:hover{background:var(--teal-d)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:var(--ghost-bg);color:var(--ink2);box-shadow:none}
+.btn.ghost:hover{background:var(--ghost-hover)}
+.btn.soft{background:var(--teal-soft);color:var(--teal-d);box-shadow:none}
+.btn.soft:hover{background:var(--soft-hover)}
+.btn.orange{background:var(--orange);box-shadow:0 4px 14px rgba(222,138,62,.25)}
+.btn.ai{background:linear-gradient(135deg,#5B8DEF,#3D6FD6);box-shadow:0 4px 14px rgba(91,141,239,.3)}
+.btn.sm{padding:8px 14px;font-size:12.5px;border-radius:11px;min-height:38px}
+.btn:disabled{opacity:.45;pointer-events:none}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+.bar{height:10px;border-radius:99px;background:var(--bar-bg);overflow:hidden}
+.bar>i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#4FAE95,var(--teal));transition:width .5s}
+.bar.orange>i{background:linear-gradient(90deg,#EFAE6C,var(--orange))}
+.stat{background:var(--stat-bg);border:1px solid var(--line);border-radius:16px;padding:13px 14px}
+.stat .num{font-size:21px;font-weight:800;color:var(--teal-d);line-height:1.5}
+.stat .lbl{font-size:12px;color:var(--muted)}
+.task{display:flex;gap:11px;align-items:flex-start;padding:13px;border-radius:15px;border:1px solid var(--line);background:var(--paper);transition:.18s}
+.task+.task{margin-top:9px}
+.task.done{background:var(--task-done-bg);border-color:var(--task-done-border)}
+.task.done .t-title{text-decoration:line-through;color:var(--muted)}
+.task.missed{background:var(--task-missed-bg);border-color:var(--task-missed-border)}
+.check{flex:0 0 auto;width:28px;height:28px;border-radius:10px;border:2px solid var(--check-border);display:grid;place-items:center;margin-top:2px;transition:.18s;color:transparent;font-size:14px}
+.task.done .check{background:var(--teal);border-color:var(--teal);color:#fff}
+.t-body{flex:1;min-width:0}
+.t-title{font-weight:600;font-size:14.5px;line-height:1.7}
+.t-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px;font-size:11.5px;color:var(--muted);align-items:center}
+.t-reason{font-size:12px;color:var(--ink2);background:var(--t-reason-bg);border-radius:10px;padding:6px 10px;margin-top:8px;display:inline-block;line-height:1.8}
+.t-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.pill{display:inline-block;padding:3px 10px;border-radius:99px;font-size:11.5px;font-weight:600;background:var(--pill-bg);color:var(--ink2)}
+.pill.teal{background:var(--teal-soft);color:var(--teal-d)}
+.pill.orange{background:var(--orange-soft);color:#B06E28}
+.pill.rose{background:var(--rose-soft);color:#A85B4E}
+.pill.grey{background:var(--pill-grey-bg);color:var(--muted)}
+.pill.ai{background:var(--ai-pill-bg);color:var(--ai-pill-color)}
+.strip{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.day{border:1px solid var(--line);background:var(--paper);border-radius:14px;padding:9px 4px;text-align:center;transition:.18s}
+.day.active{border-color:var(--teal);background:var(--teal-soft);box-shadow:0 4px 14px rgba(46,125,107,.14)}
+.day .wd{font-size:11px;font-weight:600;color:var(--ink2);line-height:1.3}
+.day .dd{font-size:14.5px;font-weight:800;margin-top:1px;color:var(--ink);line-height:1.4}
+.day.active .wd,.day.active .dd{color:var(--teal-d)}
+.day .cnt{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.3}
+.day .mini{height:3px;border-radius:99px;background:var(--bar-bg);margin-top:5px;overflow:hidden}
+.day .mini>i{display:block;height:100%;background:var(--teal);border-radius:99px}
+.day.today .dd::after{content:'';display:block;width:5px;height:5px;border-radius:99px;background:var(--orange);margin:2px auto 0}
+label.f{display:block;font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px}
+input[type=text],input[type=number],input[type=password],select,textarea{width:100%;padding:11px 13px;border-radius:13px;border:1px solid var(--line);background:var(--field-bg);transition:.18s;outline:none;font-size:16px;min-height:46px}
+input:focus,select:focus,textarea:focus{border-color:var(--teal);background:var(--paper);box-shadow:0 0 0 3px rgba(46,125,107,.1)}
+textarea{resize:vertical;min-height:76px;line-height:1.9;font-size:16px}
+select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(0% + 12px) 50%,calc(0% + 17px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-left:34px}
+.field+.field{margin-top:14px}
+.row{display:grid;gap:12px}
+.row.c2{grid-template-columns:1fr 1fr}
+.row.c3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:520px){.row.c2,.row.c3{grid-template-columns:1fr}}
+.subject-row{display:grid;grid-template-columns:1fr 130px 42px;gap:8px;align-items:center;padding:10px;border:1px solid var(--line);border-radius:15px;background:var(--field-bg)}
+.subject-row+.subject-row{margin-top:9px}
+@media(max-width:520px){.subject-row{grid-template-columns:1fr 96px 42px;gap:6px}}
+.icon-btn{width:42px;height:42px;border-radius:12px;background:var(--icon-btn-bg);color:var(--rose);display:grid;place-items:center;font-size:16px;transition:.18s}
+.avail-row{display:grid;grid-template-columns:70px 1fr 72px;gap:10px;align-items:center;padding:8px 0}
+@media(max-width:520px){.avail-row{grid-template-columns:60px 1fr 66px;gap:8px}}
+.avail-row .nm{font-size:13px;font-weight:600;color:var(--ink2)}
+.avail-row .vl{font-size:12.5px;color:var(--teal-d);font-weight:600;text-align:left}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:8px;border-radius:99px;background:var(--scroll-track);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:26px;height:26px;border-radius:50%;background:var(--teal);cursor:pointer;box-shadow:0 2px 8px rgba(46,125,107,.35);border:3px solid var(--paper)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border:3px solid var(--paper);border-radius:50%;background:var(--teal);cursor:pointer}
+.empty{text-align:center;padding:30px 16px;color:var(--muted)}
+.empty .em{font-size:36px;margin-bottom:8px;opacity:.7}
+.soft-note{background:var(--teal-soft);border:1px solid var(--teal-line);border-radius:14px;padding:11px 14px;font-size:13px;color:var(--teal-d);line-height:1.9}
+.warn-note{background:var(--orange-soft);border:1px solid #F2DFC7;border-radius:14px;padding:11px 14px;font-size:13px;color:#9C6224;line-height:1.9}
+[data-theme="dark"] .warn-note{color:#E89E5A;border-color:#3A2C1E}
+.ai-note{background:var(--ai-note-bg);border:1px solid var(--ai-note-border);border-radius:14px;padding:12px 15px;font-size:13px;color:var(--ai-note-color);line-height:1.9}
+.divider{height:1px;background:var(--line);margin:16px 0}
+.list-item{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--divider-line);font-size:13.5px}
+.list-item:last-child{border-bottom:none}
+.list-item .l{color:var(--muted);font-size:12.5px}
+.tag-row{display:flex;gap:6px;flex-wrap:wrap}
+.fade{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.toast{position:fixed;bottom:calc(82px + env(safe-area-inset-bottom));right:50%;transform:translate(50%,20px);background:var(--toast-bg);color:var(--toast-fg);padding:12px 20px;border-radius:14px;font-size:13.5px;opacity:0;transition:.3s;z-index:200;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.25);max-width:calc(100vw - 32px);text-align:center;line-height:1.8}
+.toast.show{opacity:1;transform:translate(50%,0)}
+@media(min-width:721px){.toast{bottom:26px}}
+.modal-bg{position:fixed;inset:0;background:var(--modal-bg-overlay);backdrop-filter:blur(3px);display:none;place-items:center;z-index:150;padding:18px}
+.modal-bg.open{display:grid}
+.modal{background:var(--paper);border-radius:22px;width:min(560px,100%);max-height:86vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.3);animation:fade .25s ease;overscroll-behavior:contain}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 12px;gap:10px}
+.modal-head h3{font-size:16px;flex:1;min-width:0}
+.modal-body{padding:0 20px 8px;overflow-y:auto;flex:1;-webkit-overflow-scrolling:touch}
+.modal-foot{padding:14px 20px 20px;display:flex;gap:9px;flex-wrap:wrap;padding-bottom:calc(20px + env(safe-area-inset-bottom))}
+.modal-foot .btn{flex:1 1 auto;min-width:120px}
+.x-btn{width:38px;height:38px;border-radius:12px;background:var(--x-btn-bg);font-size:18px;color:var(--ink2);display:grid;place-items:center;flex:0 0 auto}
+@media(max-width:720px){.modal-bg{padding:0;align-items:flex-end}.modal{border-radius:24px 24px 0 0;max-height:90vh;width:100%;animation:slideUp .3s cubic-bezier(.2,.8,.3,1)}.modal-head{padding:14px 18px 10px;padding-top:18px;position:relative}.modal-head::before{content:'';position:absolute;top:8px;left:50%;transform:translateX(-50%);width:38px;height:4px;border-radius:99px;background:var(--line)}.modal-body{padding:0 18px 8px}.modal-foot{padding:14px 18px 20px;padding-bottom:calc(20px + env(safe-area-inset-bottom))}}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.ai-loading{position:fixed;inset:0;background:color-mix(in srgb,var(--cream) 82%,transparent);backdrop-filter:blur(5px);display:none;place-items:center;z-index:300;padding:18px}
+.ai-loading.on{display:grid}
+.ai-loading-box{background:var(--paper);padding:24px 28px;border-radius:22px;box-shadow:0 20px 50px rgba(0,0,0,.15);text-align:center;font-size:13.5px;color:var(--ink2);max-width:320px}
+.spinner{width:40px;height:40px;border-radius:50%;border:4px solid var(--teal-soft);border-top-color:var(--teal);animation:spin .85s linear infinite;margin:0 auto 14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.focus-card{text-align:center;padding:28px 18px}
+.focus-time{font-size:60px;font-weight:800;letter-spacing:2px;color:var(--teal-d);font-variant-numeric:tabular-nums;line-height:1.2;margin:12px 0}
+@media(max-width:520px){.focus-time{font-size:54px}}
+.focus-modes{display:inline-flex;gap:4px;background:var(--chip-box);padding:4px;border-radius:15px;flex-wrap:wrap;justify-content:center}
+.focus-modes button{padding:8px 14px;border-radius:11px;font-size:13px;font-weight:600;color:var(--ink2);min-height:40px}
+.focus-modes button.active{background:var(--paper);color:var(--teal-d);box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.onb{max-width:660px;margin:0 auto;padding:24px 16px 60px}
+.onb-top{text-align:center;margin-bottom:22px}
+.onb-logo{width:78px;height:78px;border-radius:24px;margin:0 auto 12px;overflow:hidden;box-shadow:0 14px 34px rgba(46,125,107,.3)}
+.onb-logo svg{width:100%;height:100%;display:block}
+.onb-top h1{font-size:24px}
+.onb-top .slg{color:var(--orange);font-weight:600;font-size:14px;margin-top:2px}
+.steps{display:flex;gap:6px;justify-content:center;margin:18px 0 22px}
+.steps i{width:34px;height:5px;border-radius:99px;background:var(--steps-bg);transition:.3s}
+.steps i.on{background:var(--teal);width:48px}
+.chip{padding:10px 16px;border-radius:13px;border:1px solid var(--line);background:var(--chip-bg);font-size:13.5px;font-weight:500;transition:.18s;min-height:42px}
+.chip.on{background:var(--teal);color:#fff;border-color:var(--teal);font-weight:600}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.offline-banner{position:fixed;top:calc(env(safe-area-inset-top) + 62px);left:50%;transform:translateX(-50%);background:var(--orange);color:#fff;padding:7px 16px;border-radius:99px;font-size:12px;font-weight:600;z-index:60;display:none;box-shadow:0 6px 20px rgba(222,138,62,.35)}
+.offline-banner.show{display:block}
+@media(max-width:720px){body{font-size:14.5px}.nav{display:none}.bottom-nav{display:flex}.topbar-inner{padding:9px 14px;gap:10px}.brand-mark{width:36px;height:36px;border-radius:12px}.brand-name{font-size:15px}.brand-slogan{font-size:10.5px}.icon-top{width:40px;height:40px;border-radius:12px;font-size:17px}main{padding:14px 14px calc(90px + env(safe-area-inset-bottom))}.card{padding:15px;border-radius:18px}.card+.card{margin-top:12px}.grid{gap:12px}.grid-2{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}.stat{padding:12px}.stat .num{font-size:19px}.stat .lbl{font-size:11.5px}.task{padding:11px;border-radius:14px}.check{width:30px;height:30px;border-radius:10px}.t-title{font-size:14px}.t-actions .btn.sm{flex:1 1 auto;min-width:78px}.day{padding:8px 3px;border-radius:12px}.day .wd{font-size:10px}.day .dd{font-size:13.5px}.day .cnt{font-size:9.5px}.strip{gap:5px}.btn{padding:11px 16px;font-size:13.5px}.btn.sm{padding:9px 12px;font-size:12.5px;min-height:40px}.btn-row .btn{flex:1 1 auto;min-width:calc(50% - 4px)}.btn-row .btn.sm{min-width:auto;flex:0 1 auto}.onb{padding:20px 14px 60px}.onb-logo{width:68px;height:68px;border-radius:20px}.onb-top h1{font-size:22px}.focus-time{font-size:56px}.settings-mobile{display:none}}
+@media(min-width:721px){.settings-mobile{display:grid}}
+@media(max-width:380px){.grid-3{grid-template-columns:1fr}.btn-row .btn{min-width:100%}.brand-slogan{display:none}}
+</style>
+</head>
+<body>
+<div id="offlineBanner" class="offline-banner">📴 حالت آفلاین</div>
+<div id="onboarding" style="display:none"></div>
+<div id="app" style="display:none">
+  <header class="topbar"><div class="topbar-inner">
+    <div class="brand"><div class="brand-mark" id="brandMark"></div>
+      <div class="brand-text"><div class="brand-name">هم‌مسیر</div><div class="brand-slogan">برنامه‌ای که با تو پیش می‌رود.</div></div>
+    </div>
+    <nav class="nav" id="nav"></nav>
+    <div class="topbar-actions">
+      <button class="icon-top settings-mobile" data-act="route" data-route="settings" aria-label="تنظیمات">⚙️</button>
+      <button class="icon-top" id="installBtn" data-act="install-app" aria-label="نصب">⬇️</button>
+      <button class="icon-top" id="themeBtn" data-act="toggle-theme" aria-label="حالت">🌙</button>
+    </div>
+  </div></header>
+  <main id="view"></main>
+  <nav class="bottom-nav" id="bottomNav"></nav>
+</div>
+<div class="modal-bg" id="modalBg"><div class="modal">
+  <div class="modal-head"><h3 id="modalTitle"></h3><button class="x-btn" data-act="close-modal" aria-label="بستن">✕</button></div>
+  <div class="modal-body" id="modalBody"></div><div class="modal-foot" id="modalFoot"></div>
+</div></div>
+<div class="ai-loading" id="aiLoading"><div class="ai-loading-box"><div class="spinner"></div><div id="aiLoadingMsg">در حال فکر کردن…</div></div></div>
+
+<script>
+/* ================= لوگو ================= */
+function logoSVG(id){return `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="lg-${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4FB39A"/><stop offset="1" stop-color="#1F5548"/></linearGradient></defs><rect width="64" height="64" rx="19" fill="url(#lg-${id})"/><path d="M13 49 C 24 49, 26 37, 33 31 S 45 19, 51 14" stroke="#FFFFFF" stroke-width="3.6" fill="none" stroke-linecap="round" opacity=".95"/><circle cx="14" cy="49" r="5.4" fill="#FBEEDF"/><circle cx="50" cy="14" r="5.4" fill="#FFFFFF"/><circle cx="32" cy="32" r="2.6" fill="#FFFFFF" opacity=".55"/></svg>`}
+document.getElementById('brandMark').innerHTML = logoSVG('brand');
+
+/* ================= ابزارها ================= */
+const FA=['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];
+const fa=n=>String(n).replace(/\d/g,d=>FA[+d]);
+const sod=d=>{const x=new Date(d);x.setHours(0,0,0,0);return x};
+const keyOf=d=>{const x=sod(d);return x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0')};
+const parseKey=k=>{const[y,m,d]=k.split('-').map(Number);return new Date(y,m-1,d)};
+const addDays=(d,n)=>{const x=sod(d);x.setDate(x.getDate()+n);return x};
+const todayKey=()=>keyOf(new Date());
+const faIdxOf=d=>(new Date(d).getDay()+1)%7;
+const WEEK_FA=['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه'];
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+let _uid=0;const uid=()=>Date.now().toString(36)+(_uid++).toString(36);
+function esc(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function pick(arr){return arr[Math.floor(Math.random()*arr.length)]}
+const FMT={full:new Intl.DateTimeFormat('fa-IR',{weekday:'long',day:'numeric',month:'long',year:'numeric'}),dmy:new Intl.DateTimeFormat('fa-IR',{day:'numeric',month:'long',year:'numeric'}),dm:new Intl.DateTimeFormat('fa-IR',{day:'numeric',month:'long'}),wd:new Intl.DateTimeFormat('fa-IR',{weekday:'long'}),wdShort:new Intl.DateTimeFormat('fa-IR',{weekday:'short'})};
+
+/* تاریخ شمسی */
+const div=(a,b)=>~~(a/b),mod=(a,b)=>a-~~(a/b)*b;
+function g2d(gy,gm,gd){let d=div((gy+div(gm-8,6)+100100)*1461,4)+div(153*mod(gm+9,12)+2,5)+gd-34840408;d=d-div(div(gy+100100+div(gm-8,6),100)*3,4)+752;return d}
+function d2g(jdn){let j=4*jdn+139361631;j=j+div(div(4*jdn+183187720,146097)*3,4)*4-3908;const i=div(mod(j,1461),4)*5+308;const gd=div(mod(i,153),5)+1;const gm=mod(div(i,153),12)+1;const gy=div(j,1461)-100100+div(8-gm,6);return{gy,gm,gd}}
+function jalCal(jy){const breaks=[-61,9,38,199,426,686,756,818,1111,1181,1210,1635,2060,2097,2192,2262,2324,2394,2456,3178];let gy=jy+621,leapJ=-14,jp=breaks[0],jm,jump=0,leap,leapG,march,n;for(let i=1;i<breaks.length;i++){jm=breaks[i];jump=jm-jp;if(jy<jm)break;leapJ=leapJ+div(jump,33)*8+div(mod(jump,33),4);jp=jm}n=jy-jp;leapJ=leapJ+div(n,33)*8+div(mod(n,33)+3,4);if(mod(jump,33)===4&&jump-n===4)leapJ+=1;leapG=div(gy,4)-div((div(gy,100)+1)*3,4)-150;march=20+leapJ-leapG;if(jump-n<6)n=n-jump+div(jump+4,33)*33;leap=mod(mod(n+1,33)-1,4);if(leap===-1)leap=4;return{leap,gy,march}}
+function j2d(jy,jm,jd){const r=jalCal(jy);return g2d(r.gy,3,r.march)+(jm-1)*31-div(jm,7)*(jm-7)+jd-1}
+function jalaaliToGregorian(jy,jm,jd){const g=d2g(j2d(jy,jm,jd));return new Date(g.gy,g.gm-1,g.gd)}
+function gregorianToJalaali(date){const jdn=g2d(date.getFullYear(),date.getMonth()+1,date.getDate());let gy=d2g(jdn).gy,jy=gy-621,r=jalCal(jy);let jdn1f=g2d(gy,3,r.march),k=jdn-jdn1f,jm,jd;if(k>=0){if(k<=185){jm=1+div(k,31);jd=mod(k,31)+1;return{jy,jm,jd}}else k-=186}else{jy-=1;k+=179;if(r.leap===1)k+=1}jm=7+div(k,30);jd=mod(k,30)+1;return{jy,jm,jd}}
+const J_MONTHS=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+
+/* ================= وضعیت ================= */
+const LS_KEY='hammasir.v5';
+function defaultState(){return{onboarded:false,route:'dashboard',theme:'light',profile:{name:'',grade:'دوازدهم',field:'تجربی',examDate:'',goal:'',restStyle:'متعادل',tone:'آرام'},subjects:[],availability:{'0':3,'1':3,'2':3,'3':3,'4':3,'5':5,'6':4},tasks:[],sessions:[],settings:{share:false},ai:{enabled:true,mode:'builtin',apiKey:'',baseUrl:'https://openrouter.ai/api/v1',model:'openrouter/free',lastError:'',lastUsedAt:''}}}
+function load(){const base=defaultState();try{const raw=localStorage.getItem(LS_KEY);if(!raw)return base;const s=JSON.parse(raw);return{...base,...s,profile:{...base.profile,...(s.profile||{})},availability:{...base.availability,...(s.availability||{})},settings:{...base.settings,...(s.settings||{})},ai:{...base.ai,...(s.ai||{})},subjects:s.subjects||[],tasks:s.tasks||[],sessions:s.sessions||[]}}catch(e){return base}}
+let state=load();function save(){try{localStorage.setItem(LS_KEY,JSON.stringify(state))}catch(e){}}
+function applyTheme(){document.documentElement.setAttribute('data-theme',state.theme);const btn=document.getElementById('themeBtn');if(btn)btn.textContent=state.theme==='dark'?'☀️':'🌙';const meta=document.getElementById('metaThemeColor');if(meta)meta.setAttribute('content',state.theme==='dark'?'#141816':'#FAF6EE')}
+applyTheme();
+
+/* ================= موتور AI ================= */
+function builtinSubjects(){return state.subjects.filter(s=>s.name&&s.name.trim())}
+
+/* --- موتور درون‌ساخت (تقویت‌شده) --- */
+function builtinGeneratePlan(days=14,startDate=new Date()){
+  const subs=builtinSubjects();if(!subs.length)return{tasks:[],note:''};
+  const intensity=state.profile.restStyle==='فشرده'?1.15:state.profile.restStyle==='سبک'?0.8:1;
+  const pool=[];const maxW=Math.max(...subs.map(s=>Math.max(1,6-(s.mastery||3))));
+  for(let i=0;i<maxW;i++){subs.forEach(s=>{if(i<Math.max(1,6-(s.mastery||3)))pool.push(s.id)})}
+  const info={};subs.forEach(s=>{info[s.id]={ptr:0,uses:0,bank:topicsFor(s.name)}});
+  const out=[];let cursor=0,lastSid=null;const examKey=state.profile.examDate||null;
+  const rStart=['شروع آرام با این مبحث، ذهن را آماده می‌کند.','این مبحث پایهٔ بخش‌های بعدی است؛ با حوصله پیش برو.','یک شروع سبک، تمرکز را بالا می‌برد.','با یک قدم کوچک شروع کن؛ ادامه‌اش راحت‌تر می‌شود.'];
+  const rWeak=s=>[`تسلط فعلی‌ات در ${s.name} ${fa(s.mastery||3)} از ۵ است؛ کمی وقت بیشتر اینجا اثر زیادی دارد.`,`این درس الان جای رشد دارد؛ بلوک‌های کوتاه و پیوسته بهترین نتیجه را می‌دهد.`,`کم‌کم و بدون فشار؛ ${s.name} با تمرین منظم بهتر می‌شود.`,`اینجا سرمایه‌گذاری وقت، بیشترین بازده را دارد.`];
+  const rTest=['بعد از یادگیری، تست زدن نقطهٔ قوت و ضعف را نشان می‌دهد.','تست‌زنی باعث می‌شود بفهمی کجاها هنوز نیاز به مرور داری.','این بلوک تست، برای تثبیت آموخته‌هاست.','با تست زدن، سرعت و دقتت هم بالا می‌رود.'];
+  const rRev=['مرور فاصله‌دار؛ همان چیزی که مطلب را تثبیت می‌کند.','کمی فاصله از مطالعه و بعد مرور، بهترین اثر را دارد.','مرور امروز، جلوی فراموشی فردا را می‌گیرد.','یک مرور کوتاه، مطلب را از حافظهٔ کوتاه‌مدت به بلندمدت منتقل می‌کند.'];
+  for(let d=0;d<days;d++){
+    const date=addDays(startDate,d);const k=keyOf(date);if(examKey&&k>examKey)break;
+    const fi=faIdxOf(date);const availMin=(parseFloat(state.availability[fi])||0)*60*intensity;
+    if(availMin<40)continue;let blocks=clamp(Math.floor(availMin/60),0,7);if(blocks===0&&availMin>=40)blocks=1;
+    for(let b=0;b<blocks;b++){
+      let sid=pool[cursor%pool.length];if(sid===lastSid&&pool.length>1){cursor++;sid=pool[cursor%pool.length]}
+      cursor++;lastSid=sid;const s=subs.find(x=>x.id===sid);if(!s)continue;
+      const meta=info[sid];const cyc=cycleFor(s.mastery||3);const type=cyc[meta.uses%cyc.length];
+      let topic;if(type==='مرور')topic=meta.bank[Math.max(0,meta.ptr-1)%meta.bank.length];else topic=meta.bank[meta.ptr%meta.bank.length];
+      if(type!=='مرور'&&meta.uses%2===1)meta.ptr++;meta.uses++;
+      let reason;if(type==='مرور')reason=pick(rRev);else if(type==='تست‌زنی')reason=pick(rTest);else if((s.mastery||3)<=2)reason=pick(rWeak(s));else reason=pick(rStart);
+      out.push({id:uid(),date:k,subjectId:sid,subject:s.name,topic,type,minutes:type==='مرور'?35:50,status:'todo',reason,moved:false,byAI:true});
+    }
+  }
+  const weak=subs.filter(s=>(s.mastery||3)<=2).map(s=>s.name);
+  const note=weak.length?`برنامه با تمرکز بیشتر روی ${weak.slice(0,3).join('، ')} چیده شد؛ مرور فاصله‌دار هم در آن دیده شده.`:'برنامه با تنوع بین درس‌ها و مرور فاصله‌دار چیده شد.';
+  return{tasks:out,note};
+}
+
+/* --- تحلیل هفتگی درون‌ساخت --- */
+function builtinInsight(){
+  const days7=[];for(let i=6;i>=0;i--)days7.push(keyOf(addDays(new Date(),-i)));
+  const wt=state.tasks.filter(t=>days7.includes(t.date));
+  const done=wt.filter(t=>t.status==='done').length;const missed=wt.length-done;
+  const sessions=state.sessions.filter(s=>days7.includes(s.date));
+  const mins=sessions.reduce((a,s)=>a+s.minutes,0);
+  const tests=sessions.reduce((a,s)=>a+(s.tests||0),0);
+  const correct=sessions.reduce((a,s)=>a+(s.correct||0),0);
+  const lines=[];
+  if(!wt.length&&!sessions.length)return'این هفته هنوز برنامه‌ای ثبت نشده. اگر بخواهی، می‌توانیم از یک برنامهٔ سبک شروع کنیم و قدم‌به‌قدم جلو برویم.';
+  const pct=wt.length?Math.round(done/wt.length*100):0;
+  if(pct>=80)lines.push('این هفته پیوستگی خوبی داشتی؛ همین ریتم را نگه دار.');
+  else if(pct>=50)lines.push('پیشرفتت متعادل بود؛ لازم نیست همه‌چیز کامل باشد، فقط ادامه بده.');
+  else if(pct>0)lines.push('این هفته چند کار انجام شد که خودش ارزشمندی دارد؛ هفتهٔ بعد یک قدم کوچک‌تر بردار.');
+  else lines.push('این هفته کارها انجام نشدند، اما اشکالی ندارد؛ برنامه برای همین است که با واقعیت هماهنگ شود.');
+  if(tests){const acc=Math.round(correct/tests*100);
+    if(acc>=70)lines.push(`دقت تست‌هایت ${fa(acc)}٪ بود؛ یعنی مبحث‌ها را خوب فهمیده‌ای. حالا سرعت را هم کم‌کم بالا ببر.`);
+    else if(acc>=50)lines.push(`دقت تست‌هایت ${fa(acc)}٪ بود؛ چند مبحث نیاز به مرور دارد. یک مرور کوتاه این هفته اثر خوبی می‌گذارد.`);
+    else lines.push('دقت تست‌ها نشان می‌دهد چند مبحث را بهتر است دوباره مرور کنی؛ بدون فشار، فقط یکی‌یکی.');
+  }else if(mins>0){lines.push(`${fa(mins)} دقیقه مطالعه ثبت شده؛ تست‌زنی هم می‌تواند به تثبیت کمک کند.`)}
+  const weak=state.subjects.filter(s=>(s.mastery||3)<=2).slice(0,2).map(s=>s.name);
+  if(weak.length)lines.push(`پیشنهاد کوتاه: هفتهٔ آینده روی ${weak.join(' و ')} یک بلوک کوتاه اضافه کن.`);
+  else if(missed>0)lines.push('یک کار عقب‌مانده را انتخاب کن و همین امروز انجامش بده؛ همین یک قدم، حال‌وهوای هفته را عوض می‌کند.');
+  else lines.push('حالا وقت خوبی است برای یک مرور آرام و استراحت؛ تعادل هم بخشی از پیشرفت است.');
+  return lines.slice(0,3).join(' ');
+}
+
+/* --- فراخوانی LLM واقعی --- */
+async function callRealAI(system,user,opts={}){
+  const ai=state.ai;const json=!!opts.json;
+  if(!ai.apiKey)throw new Error('NO_KEY');
+  if(!navigator.onLine)throw new Error('OFFLINE');
+
+  if(ai.mode==='gemini'){
+    const model=ai.model||'gemini-1.5-flash';
+    const url=`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(ai.apiKey)}`;
+    const body={systemInstruction:{parts:[{text:system}]},contents:[{role:'user',parts:[{text:user}]}],generationConfig:{temperature:0.4,responseMimeType:json?'application/json':'text/plain'}};
+    const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(!res.ok){const t=await res.text().catch(()=>'');throw new Error('AI_HTTP_'+res.status+': '+t.slice(0,180))}
+    const data=await res.json();
+    const txt=(data.candidates?.[0]?.content?.parts||[]).map(p=>p.text||'').join('');
+    if(!txt)throw new Error('EMPTY_RESPONSE');
+    return txt;
+  }
+
+  // OpenAI-compatible (OpenRouter, OpenAI, Groq, etc.)
+  const base=(ai.baseUrl||'https://openrouter.ai/api/v1').replace(/\/+$/,'');
+  const body={model:ai.model||'openrouter/free',messages:[{role:'system',content:system},{role:'user',content:user}],temperature:0.4};
+  if(json)body.response_format={type:'json_object'};
+  const res=await fetch(base+'/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+ai.apiKey},body:JSON.stringify(body)});
+  if(!res.ok){const t=await res.text().catch(()=>'');throw new Error('AI_HTTP_'+res.status+': '+t.slice(0,180))}
+  const data=await res.json();
+  const txt=data.choices?.[0]?.message?.content||'';
+  if(!txt)throw new Error('EMPTY_RESPONSE');
+  return txt;
+}
+
+function parseAIJson(text){
+  let t=String(text||'').trim();
+  t=t.replace(/^```(?:json)?\s*/i,'').replace(/```\s*$/,'').trim();
+  const i=t.indexOf('{'),j=t.lastIndexOf('}');
+  if(i>=0&&j>i)t=t.slice(i,j+1);
+  return JSON.parse(t);
+}
+
+/* --- ساخت برنامه: LLM یا درون‌ساخت --- */
+async function aiBuildPlan(days=14){
+  const subs=builtinSubjects();
+  if(!subs.length)throw new Error('NO_SUBJECTS');
+
+  // اگر AI فعال است و کلید دارد و آنلاین هستیم، از LLM استفاده کن
+  if(state.ai.enabled && state.ai.mode!=='builtin' && state.ai.apiKey && navigator.onLine){
+    try{
+      const todayKeyStr=keyOf(new Date());
+      const examKey=state.profile.examDate||keyOf(addDays(new Date(),days));
+      const subjLines=subs.map(s=>`- ${s.name} (تسلط ${s.mastery}/۵)`).join('\n');
+      const availLines=WEEK_FA.map((w,i)=>`- ${w}: ${state.availability[i]??0} ساعت`).join('\n');
+      const system=`تو یک برنامه‌ریز تحصیلی حرفه‌ای و دلسوز برای داوطلبان کنکور ایران هستی.
+برنامه‌ای واقع‌بینانه، متعادل و بدون استرس می‌چینی.
+اصول:
+- تنوع بین درس‌ها؛ پشت‌سرهم یک درس تکرار نشود.
+- مرور فاصله‌دار: بعد از هر مطالعه، ۲ و ۷ روز بعد مرورش را بگذار.
+- توجه بیشتر به درس‌های ضعیف‌تر.
+- مدت هر بلوک بین ۳۰ تا ۶۰ دقیقه.
+- مجموع دقایق هر روز از ساعت آزاد همان روز بیشتر نشود.
+- هر کار یک «دلیل» کوتاه و دوستانه دارد؛ بدون سرزنش.
+- تاریخ‌ها به شکل YYYY-MM-DD.
+خروجی فقط JSON معتبر، بدون متن اضافه.`;
+      const user=`اطلاعات داوطلب:
+- نام: ${state.profile.name||'داوطلب'}
+- پایه: ${state.profile.grade}
+- رشته: ${state.profile.field}
+- هدف: ${state.profile.goal||'—'}
+- سبک: ${state.profile.restStyle}
+- امروز: ${todayKeyStr}
+- آزمون: ${examKey}
+
+درس‌ها:
+${subjLines}
+
+ساعت‌های آزاد:
+${availLines}
+
+برای ${days} روز آینده برنامه بچین. خروجی:
+{"note":"جملهٔ کوتاه","tasks":[{"date":"YYYY-MM-DD","subject":"...","topic":"...","type":"مطالعهٔ مفهومی|تست‌زنی|مرور","minutes":45,"reason":"..."}]}
+فقط JSON.`;
+      const raw=await callRealAI(system,user,{json:true});
+      const data=parseAIJson(raw);
+      if(data&&Array.isArray(data.tasks)&&data.tasks.length){
+        const nameToId={};subs.forEach(s=>{nameToId[s.name.trim().toLowerCase()]=s.id});
+        const tasks=[];
+        data.tasks.forEach(t=>{
+          if(!t||!t.date||!t.subject)return;
+          const k=String(t.date).slice(0,10);
+          if(!/^\d{4}-\d{2}-\d{2}$/.test(k))return;
+          if(k<todayKeyStr)return;
+          if(state.profile.examDate&&k>state.profile.examDate)return;
+          const sid=nameToId[String(t.subject).trim().toLowerCase()]||subs[0].id;
+          const subj=subs.find(s=>s.id===sid);if(!subj)return;
+          const type=['مطالعهٔ مفهومی','تست‌زنی','مرور'].includes(t.type)?t.type:'مطالعهٔ مفهومی';
+          tasks.push({id:uid(),date:k,subjectId:sid,subject:subj.name,topic:String(t.topic||'مبحث').slice(0,60),type,minutes:clamp(+t.minutes||45,20,90),status:'todo',reason:String(t.reason||'').slice(0,180)||'پیشنهاد هوش مصنوعی',moved:false,byAI:true});
+        });
+        if(tasks.length){state.ai.lastUsedAt=new Date().toISOString();state.ai.lastError='';return{tasks,note:data.note||''}}
+      }
+    }catch(e){state.ai.lastError=String(e.message||e);save()}
+  }
+
+  // در غیر این صورت، موتور درون‌ساخت
+  const res=builtinGeneratePlan(days,new Date());
+  state.ai.lastUsedAt=new Date().toISOString();
+  return res;
+}
+
+/* --- تحلیل هفتگی: LLM یا درون‌ساخت --- */
+async function aiWeeklyInsight(){
+  if(state.ai.enabled && state.ai.mode!=='builtin' && state.ai.apiKey && navigator.onLine){
+    try{
+      const days7=[];for(let i=6;i>=0;i--)days7.push(keyOf(addDays(new Date(),-i)));
+      const wt=state.tasks.filter(t=>days7.includes(t.date));
+      const done=wt.filter(t=>t.status==='done').length;
+      const sessions=state.sessions.filter(s=>days7.includes(s.date));
+      const mins=sessions.reduce((a,s)=>a+s.minutes,0);
+      const tests=sessions.reduce((a,s)=>a+(s.tests||0),0);
+      const correct=sessions.reduce((a,s)=>a+(s.correct||0),0);
+      const system=`تو مشاور تحصیلی دلسوز داوطلبان کنکوری. حداکثر ۳ جمله، عملی و بدون سرزنش.`;
+      const user=`انجام‌شده: ${done} از ${wt.length}
+دقیقه مطالعه: ${mins}
+تست: ${tests}${tests?` (دقت ${Math.round(correct/tests*100)}٪)`:''}
+
+یک تحلیل کوتاه بده.`;
+      const txt=await callRealAI(system,user);
+      state.ai.lastUsedAt=new Date().toISOString();state.ai.lastError='';
+      return txt.trim();
+    }catch(e){state.ai.lastError=String(e.message||e);save()}
+  }
+  return builtinInsight();
+}
+
+/* --- بازتنظیم: LLM یا درون‌ساخت --- */
+async function aiReschedule(){
+  const pending=pendingReschedule();
+  if(!pending.length)return[];
+  if(state.ai.enabled && state.ai.mode!=='builtin' && state.ai.apiKey && navigator.onLine){
+    try{
+      const t0=sod(new Date());const days=[];
+      for(let d=0;d<21;d++){const k=keyOf(addDays(t0,d));if(state.profile.examDate&&k>state.profile.examDate)break;days.push({key:k,cap:freeCapacity(k)})}
+      const system=`برنامه‌ریز منصف و آرام. فقط JSON.`;
+      const user=`کارهای عقب‌مانده:
+${pending.map((t,i)=>`${i+1}. ${t.subject} — ${t.topic} | ${t.type} | ${t.minutes} دقیقه | ${t.date}`).join('\n')}
+
+ظرفیت روزها:
+${days.map(d=>`${d.key}: ${d.cap}`).join('\n')}
+
+خروجی: {"moves":[{"index":1,"to":"YYYY-MM-DD"}]}`;
+      const raw=await callRealAI(system,user,{json:true});
+      const data=parseAIJson(raw);
+      const moves=Array.isArray(data.moves)?data.moves:[];
+      const map={};moves.forEach(m=>{if(m&&m.index)map[+m.index]=m.to});
+      const plan=pending.map((task,i)=>{const to=map[i+1];const valid=to&&/^\d{4}-\d{2}-\d{2}$/.test(to)?to:null;return{task,from:task.date,to:valid}});
+      if(plan.some(p=>p.to))return plan;
+    }catch(e){state.ai.lastError=String(e.message||e);save()}
+  }
+  return buildReschedulePlan();
+}
+
+function setAiBusy(on,msg){const el=document.getElementById('aiLoading');const m=document.getElementById('aiLoadingMsg');if(m&&msg)m.textContent=msg;if(el)el.classList.toggle('on',!!on)}
+
+/* ================= تولید محلی ================= */
+const TOPIC_BANK=[
+{keys:['ریاضی','حسابان','حساب دیفرانسیل','ریاضیات'],topics:['تابع و دامنه','مثلثات','حد و پیوستگی','مشتق','کاربرد مشتق','دنباله','لگاریتم','احتمال','شمارش و ترکیبات']},
+{keys:['هندسه'],topics:['تشابه','دایره','قضیه تالس','فضا و حجم','بردار','مقاطع مخروطی']},
+{keys:['آمار','گسسته'],topics:['آمار توصیفی','احتمال','گراف و مدل‌سازی','آمار استنباطی']},
+{keys:['فیزیک'],topics:['حرکت‌شناسی','دینامیک','نوسان و موج','الکتریسیته ساکن','جریان الکتریکی','مغناطیس','القای الکترومغناطیسی','فیزیک اتمی','فشار و گرما']},
+{keys:['شیمی'],topics:['ساختار اتم','جدول تناوبی','پیوند شیمیایی','استوکیومتری','محلول‌ها','ترمودینامیک','الکتروشیمی','شیمی آلی','اسید و باز']},
+{keys:['زیست'],topics:['ژنتیک','سلول و تقسیم سلولی','تنظیم عصبی','گردش مواد','تنفس سلولی','فتوسنتز','تولید مثل','تغییر و تحول گونه‌ها','گیاه‌شناسی']},
+{keys:['ادبیات','فارسی'],topics:['قرابت معنایی','تاریخ ادبیات','آرایه‌های ادبی','لغت و املا','زبان فارسی','دستور']},
+{keys:['عربی'],topics:['ترجمه','قواعد فعل','اعراب','تحلیل صرفی','درک مطلب']},
+{keys:['دین','دینی','قرآن'],topics:['درس‌نامه','آیات کلیدی','مرور نکات','تست‌زنی درس‌به‌درس']},
+{keys:['زبان','انگلیسی'],topics:['واژگان','گرامر','کلوز تست','درک مطلب']},
+{keys:['زمین'],topics:['ساختار زمین','منابع آب','سنگ‌ها','آب‌وهوا']}
+];
+function topicsFor(name){const n=(name||'').trim();const found=TOPIC_BANK.find(b=>b.keys.some(k=>n.includes(k)));return found?found.topics.slice():['مبحث جدید','مرور کلی','تمرین و تست']}
+const TYPE_ORDER={'مطالعهٔ مفهومی':0,'تست‌زنی':1,'مرور':2};
+const ACTIVITY_CYCLE={low:['مطالعهٔ مفهومی','تست‌زنی','مرور'],mid:['تست‌زنی','مرور','مطالعهٔ مفهومی'],high:['تست‌زنی','مرور','تست‌زنی']};
+function cycleFor(m){return m<=2?ACTIVITY_CYCLE.low:(m===3?ACTIVITY_CYCLE.mid:ACTIVITY_CYCLE.high)}
+function reasonFor(s,type){const m=s.mastery||3;if(type==='مرور')return'مرور فاصله‌دار؛ همان چیزی که مطلب را تثبیت می‌کند.';if(m<=2)return'تسلط فعلی‌ات در '+s.name+' '+fa(m)+' از ۵ است؛ کمی وقت بیشتر اینجا اثر زیادی دارد.';if(type==='تست‌زنی')return'بعد از یادگیری، تست زدن نقطهٔ قوت و ضعف را نشان می‌دهد.';return'شروع آرام با مطالعهٔ مفهومی، پایهٔ بقیهٔ کارهاست.'}
+function generatePlan(days=14,startDate=new Date()){
+  const subs=state.subjects.filter(s=>s.name&&s.name.trim());if(!subs.length)return[];
+  const intensity=state.profile.restStyle==='فشرده'?1.15:state.profile.restStyle==='سبک'?0.8:1;
+  const maxW=Math.max(...subs.map(s=>Math.max(1,6-(s.mastery||3))));const pool=[];
+  for(let i=0;i<maxW;i++){subs.forEach(s=>{if(i<Math.max(1,6-(s.mastery||3)))pool.push(s.id)})}
+  if(!pool.length)return[];const info={};subs.forEach(s=>{info[s.id]={ptr:0,uses:0,bank:topicsFor(s.name)}});
+  const out=[];let cursor=0,lastSid=null;const examKey=state.profile.examDate||null;
+  for(let d=0;d<days;d++){const date=addDays(startDate,d);const k=keyOf(date);if(examKey&&k>examKey)break;const fi=faIdxOf(date);const availMin=(parseFloat(state.availability[fi])||0)*60*intensity;if(availMin<40)continue;let blocks=clamp(Math.floor(availMin/60),0,7);if(blocks===0&&availMin>=40)blocks=1;
+    for(let b=0;b<blocks;b++){let sid=pool[cursor%pool.length];if(sid===lastSid&&pool.length>1){cursor++;sid=pool[cursor%pool.length]}cursor++;lastSid=sid;const s=subs.find(x=>x.id===sid);if(!s)continue;const meta=info[sid];const cyc=cycleFor(s.mastery||3);const type=cyc[meta.uses%cyc.length];let topic;if(type==='مرور')topic=meta.bank[Math.max(0,meta.ptr-1)%meta.bank.length];else topic=meta.bank[meta.ptr%meta.bank.length];if(type!=='مرور'&&meta.uses%2===1)meta.ptr++;meta.uses++;out.push({id:uid(),date:k,subjectId:sid,subject:s.name,topic,type,minutes:type==='مرور'?35:50,status:'todo',reason:reasonFor(s,type),moved:false})}}
+  return out;
+}
+
+/* ================= کارها ================= */
+function tasksOn(k){return state.tasks.filter(t=>t.date===k).sort((a,b)=>{const ad=a.status==='done'?1:0,bd=b.status==='done'?1:0;if(ad!==bd)return ad-bd;return(TYPE_ORDER[a.type]??9)-(TYPE_ORDER[b.type]??9)})}
+function pendingReschedule(){const t0=sod(new Date());return state.tasks.filter(t=>t.status!=='done'&&(t.status==='missed'||(parseKey(t.date)<t0&&t.status==='todo')))}
+function freeCapacity(k){const fi=faIdxOf(parseKey(k));const total=(parseFloat(state.availability[fi])||0)*60;const used=state.tasks.filter(t=>t.date===k&&t.status!=='done').reduce((a,t)=>a+t.minutes,0);return Math.max(0,total-used)}
+function buildReschedulePlan(){const pending=pendingReschedule();if(!pending.length)return[];const usage={};const plan=[];const t0=sod(new Date());pending.forEach(task=>{let placed=null;for(let d=0;d<21;d++){const k=keyOf(addDays(t0,d));if(state.profile.examDate&&k>state.profile.examDate)break;if(!usage[k])usage[k]=freeCapacity(k);if(usage[k]>=task.minutes&&k!==task.date){usage[k]-=task.minutes;placed=k;break}}plan.push({task,from:task.date,to:placed})});return plan}
+function addReviewTasks(subjectId,subjectName,topics,fromDate){[2,7].forEach(o=>{const k=keyOf(addDays(fromDate,o));if(state.profile.examDate&&k>state.profile.examDate)return;topics.forEach(t=>{state.tasks.push({id:uid(),date:k,subjectId,subject:subjectName,topic:t,type:'مرور',minutes:35,status:'todo',reason:'مرور فاصله‌دار '+fa(o)+' روز بعد از مطالعه؛ بهترین زمان برای تثبیت.',moved:false})})})}
+
+/* ================= UI ================= */
+function toast(msg){const el=document.createElement('div');el.className='toast';el.textContent=msg;document.body.appendChild(el);requestAnimationFrame(()=>el.classList.add('show'));setTimeout(()=>{el.classList.remove('show');setTimeout(()=>el.remove(),320)},3000)}
+function openModal(title,body,foot){document.getElementById('modalTitle').textContent=title;document.getElementById('modalBody').innerHTML=body;document.getElementById('modalFoot').innerHTML=foot||'';document.getElementById('modalBg').classList.add('open')}
+function closeModal(){document.getElementById('modalBg').classList.remove('open')}
+function tone(calm,serious,cheer){const t=state.profile.tone;if(t==='جدی')return serious;if(t==='تشویقی')return cheer;return calm}
+function aiActive(){return state.ai.enabled&&(state.ai.mode==='builtin'||!!state.ai.apiKey)}
+
+/* ================= نماها ================= */
+const ROUTES=[{id:'dashboard',label:'داشبورد',ico:'🏠'},{id:'calendar',label:'تقویم',ico:'📅'},{id:'planner',label:'برنامه',ico:'✨'},{id:'study',label:'مطالعه',ico:'📖'},{id:'focus',label:'تمرکز',ico:'⏱️'},{id:'settings',label:'تنظیمات',ico:'⚙️'}];
+const BOTTOM_ROUTES=['dashboard','calendar','planner','study','focus'];
+function render(){
+  applyTheme();
+  const app=document.getElementById('app'),onb=document.getElementById('onboarding');
+  if(!state.onboarded){app.style.display='none';onb.style.display='block';onb.innerHTML=viewOnboarding();return}
+  onb.style.display='none';app.style.display='block';
+  document.getElementById('nav').innerHTML=ROUTES.map(r=>`<button data-act="route" data-route="${r.id}" class="${state.route===r.id?'active':''}">${r.label}</button>`).join('');
+  document.getElementById('bottomNav').innerHTML=BOTTOM_ROUTES.map(id=>{const r=ROUTES.find(x=>x.id===id);return `<button class="bn-item ${state.route===r.id?'active':''}" data-act="route" data-route="${r.id}"><span class="bn-ico">${r.ico}</span><span>${r.label}</span></button>`}).join('');
+  const v=document.getElementById('view');const map={dashboard:viewDashboard,calendar:viewCalendar,planner:viewPlanner,study:viewStudy,focus:viewFocus,settings:viewSettings};
+  v.innerHTML=(map[state.route]||viewDashboard)();v.classList.remove('fade');void v.offsetWidth;v.classList.add('fade');
+  if(state.route==='focus')updateFocusDisplay();
+}
+
+function viewDashboard(){
+  const tk=todayKey(),today=new Date(),tasks=tasksOn(tk);
+  const done=tasks.filter(t=>t.status==='done').length;
+  const pct=tasks.length?Math.round(done/tasks.length*100):0;
+  const next=tasks.find(t=>t.status!=='done')||null;
+  const name=state.profile.name?state.profile.name:'دوست من';
+  const days7=[];for(let i=6;i>=0;i--)days7.push(keyOf(addDays(today,-i)));
+  const weekTasks=state.tasks.filter(t=>days7.includes(t.date));
+  const weekDone=weekTasks.filter(t=>t.status==='done').length;
+  const weekSessions=state.sessions.filter(s=>days7.includes(s.date));
+  const weekMinutes=weekSessions.reduce((a,s)=>a+s.minutes,0);
+  const weekTests=weekSessions.reduce((a,s)=>a+(s.tests||0),0);
+  const weekCorrect=weekSessions.reduce((a,s)=>a+(s.correct||0),0);
+  const attention=state.subjects.map(s=>{const missed=weekTasks.filter(t=>t.subjectId===s.id&&t.status!=='done').length;const doneS=weekTasks.filter(t=>t.subjectId===s.id&&t.status==='done').length;return{s,missed,doneS,score:(6-(s.mastery||3))+missed*0.8-doneS*0.3}}).filter(x=>x.s.mastery<=2||x.missed>=2).sort((a,b)=>b.score-a.score).slice(0,4);
+  const reviewsToday=tasks.filter(t=>t.type==='مرور'&&t.status!=='done');
+  const maxDay=Math.max(1,...days7.map(k=>state.tasks.filter(t=>t.date===k).length));
+  const bars=days7.map(k=>{const all=state.tasks.filter(t=>t.date===k);const dn=all.filter(t=>t.status==='done').length;const h=all.length?Math.max(10,Math.round(dn/maxDay*100)):4;const isToday=k===tk;return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:5px"><div style="width:100%;height:48px;display:flex;align-items:flex-end"><div style="width:100%;height:${h}%;min-height:4px;border-radius:6px;background:${isToday?'var(--orange)':'var(--teal)'};opacity:${all.length?1:.25}"></div></div><div style="font-size:10px;color:var(--muted)">${FMT.wdShort.format(parseKey(k))}</div></div>`}).join('');
+  const empty=!state.subjects.length;
+  return `<div class="grid">
+    <div class="card hero"><div class="card-head" style="margin-bottom:6px"><div style="min-width:0"><h2>${tone('سلام '+name+' 🌿','سلام '+name,'سلام '+name+' ✨')}</h2><div class="date">${FMT.full.format(today)}</div></div><div class="tag-row" style="flex:0 0 auto">${aiActive()?`<span class="pill ai">AI</span>`:''}${state.profile.examDate?`<span class="pill teal">${examLabel()}</span>`:''}</div></div>
+      <p style="color:var(--ink2);font-size:13.5px">${empty?'برای شروع، اول درس‌ها و ساعت‌های آزادت را وارد کن تا برنامه‌ات ساخته شود.':tone('امروز فقط قدم بعدی مهم است، نه کل مسیر.','برنامهٔ امروز آماده است؛ قدم‌به‌قدم پیش برو.','امروز یک روز خوب برای پیش رفتن است!')}</p>
+      ${empty?`<div class="btn-row" style="margin-top:14px"><button class="btn" data-act="route" data-route="planner">ساخت برنامهٔ من</button></div>`:''}
+    </div>
+    ${empty?emptyStateCard():`
+    <div class="grid grid-2">
+      <div class="card"><div class="card-head"><div><div class="card-title">برنامهٔ امروز</div><div class="card-sub">${fa(done)} از ${fa(tasks.length)} کار انجام شده</div></div><span class="pill ${pct===100?'teal':''}">${fa(pct)}٪</span></div>
+        <div class="bar ${pct===100?'':'orange'}"><i style="width:${pct}%"></i></div>
+        ${next?`<div style="margin-top:14px;padding:13px;border-radius:15px;background:var(--stat-bg);border:1px solid var(--line)"><div class="card-sub" style="margin-bottom:4px">قدم بعدی پیشنهادی</div><div style="font-weight:700;font-size:15px;line-height:1.7">${esc(next.subject)} — ${esc(next.topic)}</div><div class="t-meta" style="margin-top:5px"><span class="pill teal">${esc(next.type)}</span>${next.byAI?'<span class="pill ai">AI</span>':''}<span>${fa(next.minutes)} دقیقه</span></div><div class="btn-row" style="margin-top:11px"><button class="btn sm" data-act="start-focus" data-subject="${next.subjectId}">شروع تمرکز</button><button class="btn sm ghost" data-act="toggle-task" data-id="${next.id}">انجام شد</button></div></div>`:`<div class="soft-note" style="margin-top:14px">${tasks.length?'همهٔ کارهای امروز انجام شد. این تعادل را حفظ کن 🌿':'برای امروز کاری چیده نشده.'}</div>`}
+        <div class="btn-row" style="margin-top:14px"><button class="btn soft" data-act="route" data-route="calendar">${done?'ادامهٔ برنامه':'دیدن تقویم'}</button>${aiActive()?`<button class="btn ai" data-act="ai-insight">تحلیل هفته</button>`:''}</div>
+      </div>
+      <div class="card"><div class="card-head"><div class="card-title">روند هفت روز گذشته</div></div><div style="display:flex;gap:6px;align-items:flex-end;margin-bottom:6px">${bars}</div><div class="grid grid-3" style="margin-top:12px;gap:8px"><div class="stat"><div class="num">${fa(weekDone)}</div><div class="lbl">کار انجام‌شده</div></div><div class="stat"><div class="num">${fa(weekMinutes)}</div><div class="lbl">دقیقهٔ مطالعه</div></div><div class="stat"><div class="num">${fa(weekTests)}</div><div class="lbl">تست</div></div></div>${weekTests?`<div class="soft-note" style="margin-top:10px">دقت پاسخ‌دهی: <b>${fa(Math.round(weekCorrect/weekTests*100))}٪</b></div>`:''}</div>
+    </div>
+    <div class="grid grid-2">
+      <div class="card"><div class="card-head"><div class="card-title">درس‌های نیازمند توجه</div></div>${attention.length?attention.map(a=>`<div class="list-item"><div style="min-width:0"><div style="font-weight:600">${esc(a.s.name)}</div><div class="l">تسلط ${fa(a.s.mastery)} از ۵${a.missed?' • '+fa(a.missed)+' کار انجام‌نشده':''}</div></div><button class="btn sm soft" data-act="route" data-route="calendar">برنامه</button></div>`).join(''):`<div class="empty" style="padding:14px"><div class="em">🌱</div>الان همه‌چیز متعادل است.</div>`}</div>
+      <div class="card"><div class="card-head"><div class="card-title">مرورهای امروز</div><div class="card-sub">${fa(reviewsToday.length)} مرور</div></div>${reviewsToday.length?reviewsToday.slice(0,5).map(t=>`<div class="list-item"><div style="min-width:0"><div style="font-weight:600">${esc(t.subject)} — ${esc(t.topic)}</div><div class="l">${fa(t.minutes)} دقیقه</div></div><button class="btn sm ghost" data-act="toggle-task" data-id="${t.id}">انجام شد</button></div>`).join(''):`<div class="empty" style="padding:14px"><div class="em">📖</div>مروری برای امروز ثبت نشده.</div>`}</div>
+    </div>`}
+  </div>`;
+}
+function examLabel(){if(!state.profile.examDate)return'';const days=Math.round((parseKey(state.profile.examDate)-sod(new Date()))/86400000);if(days<0)return'گذشته';const months=Math.floor(days/30.44);const rem=Math.round(days-months*30.44);if(months<=0)return fa(days)+' روز مانده';return fa(months)+' ماه و '+fa(rem)+' روز'}
+function emptyStateCard(){return `<div class="card"><div class="empty"><div class="em">🧭</div><h3 style="margin-bottom:6px">هنوز برنامه‌ای ساخته نشده</h3><p style="font-size:13.5px;max-width:420px;margin:0 auto">با چند سؤال کوتاه، هم‌مسیر یک برنامهٔ واقع‌بینانه بر اساس ساعت‌های آزاد، درس‌های قوی و ضعیف و تاریخ آزمونت می‌سازد.</p><div class="btn-row" style="justify-content:center;margin-top:18px"><button class="btn" data-act="route" data-route="planner">ساخت برنامهٔ من</button><button class="btn ghost" data-act="load-demo">نمونهٔ آماده</button></div></div></div>`}
+
+let calWeekStart=null,calSelected=null;
+function ensureCal(){const t=sod(new Date());if(!calWeekStart)calWeekStart=addDays(t,-faIdxOf(t));if(!calSelected)calSelected=todayKey()}
+function viewCalendar(){
+  ensureCal();const tk=todayKey();const days=[];for(let i=0;i<7;i++)days.push(addDays(calWeekStart,i));
+  const strip=days.map(d=>{const k=keyOf(d);const all=state.tasks.filter(t=>t.date===k);const dn=all.filter(t=>t.status==='done').length;const pct=all.length?Math.round(dn/all.length*100):0;return `<button class="day ${k===calSelected?'active':''} ${k===tk?'today':''}" data-act="select-day" data-key="${k}"><div class="wd">${FMT.wdShort.format(d)}</div><div class="dd">${fa(gregorianToJalaali(d).jd)}</div><div class="cnt">${all.length?fa(dn)+'/'+fa(all.length):'—'}</div><div class="mini"><i style="width:${pct}%"></i></div></button>`}).join('');
+  const selDate=parseKey(calSelected);const selTasks=tasksOn(calSelected);const selDone=selTasks.filter(t=>t.status==='done').length;const missed=pendingReschedule();
+  return `<div class="grid">
+    <div class="card"><div class="card-head"><div><div class="card-title">تقویم هفتگی</div><div class="card-sub">${FMT.dmy.format(days[0])} تا ${FMT.dmy.format(days[6])}</div></div></div><div class="strip">${strip}</div><div class="btn-row" style="margin-top:12px"><button class="btn sm ghost" data-act="week-move" data-dir="-1">← هفتهٔ قبل</button><button class="btn sm ghost" data-act="week-today">این هفته</button><button class="btn sm ghost" data-act="week-move" data-dir="1">هفتهٔ بعد →</button></div></div>
+    ${missed.length?`<div class="card" style="border-color:var(--task-missed-border);background:var(--task-missed-bg)"><div class="card-head" style="margin-bottom:8px"><div class="card-title">${fa(missed.length)} کار عقب‌مانده</div></div><p style="font-size:13.5px;color:var(--ink2)">اشکالی ندارد؛ برنامه برای همین ساخته شده که با واقعیت هماهنگ شود.</p><div class="btn-row" style="margin-top:12px"><button class="btn ai" data-act="open-reschedule">بازتنظیم هوشمند</button></div></div>`:''}
+    <div class="card"><div class="card-head"><div style="min-width:0"><div class="card-title">${FMT.full.format(selDate)}</div><div class="card-sub">${selTasks.length?fa(selDone)+' از '+fa(selTasks.length)+' انجام شده':'کاری چیده نشده'}</div></div><button class="btn sm soft" data-act="open-add-task" data-key="${calSelected}">افزودن</button></div>
+      ${selTasks.length?selTasks.map(t=>taskHTML(t,calSelected)).join(''):`<div class="empty"><div class="em">🗓️</div>این روز خالی است.</div>`}
+    </div>
+  </div>`;
+}
+function taskHTML(t,dayKey){const tk=todayKey();const isPast=dayKey<tk,isToday=dayKey===tk;return `<div class="task ${t.status==='done'?'done':''} ${t.status==='missed'?'missed':''}"><button class="check" data-act="toggle-task" data-id="${t.id}" aria-label="انجام شد">✓</button><div class="t-body"><div class="t-title">${esc(t.subject)} — ${esc(t.topic)}</div><div class="t-meta"><span class="pill teal">${esc(t.type)}</span>${t.byAI?'<span class="pill ai">AI</span>':''}<span>${fa(t.minutes)} دقیقه</span>${t.status==='done'?'<span class="pill">انجام شد</span>':''}${t.status==='missed'?'<span class="pill orange">انجام نشد</span>':''}${t.moved?'<span class="pill grey">جابه‌جا</span>':''}</div>${t.reason?`<div class="t-reason">${esc(t.reason)}</div>`:''}${t.status!=='done'?`<div class="t-actions"><button class="btn sm soft" data-act="toggle-task" data-id="${t.id}">انجام شد</button>${(isPast||isToday)?`<button class="btn sm ghost" data-act="mark-missed" data-id="${t.id}">انجام نشد</button>`:''}<button class="btn sm ghost" data-act="open-move" data-id="${t.id}">انتقال</button></div>`:`<div class="t-actions"><button class="btn sm ghost" data-act="toggle-task" data-id="${t.id}">برگرداندن</button></div>`}</div></div>`}
+
+let plannerDraftSubjects=null;
+function viewPlanner(){
+  if(!plannerDraftSubjects)plannerDraftSubjects=state.subjects.map(s=>({...s}));
+  if(!plannerDraftSubjects.length)plannerDraftSubjects=[{id:uid(),name:'',mastery:3},{id:uid(),name:'',mastery:3}];
+  const av=state.availability,p=state.profile;
+  return `<div class="grid">
+    <div class="card hero"><h2>برنامه‌ریز هوشمند</h2><p style="color:var(--ink2);font-size:13.5px;margin-top:4px">هرچه دقیق‌تر پر کنی، برنامهٔ ساخته‌شده واقع‌بینانه‌تر می‌شود.</p><div class="ai-note" style="margin-top:10px">${state.ai.enabled?(state.ai.mode==='builtin'?'✨ موتور هوشمند درون‌ساخت فعال است. برای دقت بیشتر می‌توانی از تنظیمات به یک LLM واقعی وصل شوی.':'✨ هوش مصنوعی فعال است؛ برنامه با LLM ساخته می‌شود.'):'⚠️ هوش مصنوعی خاموش است؛ برنامه با قواعد ساده چیده می‌شود.'}</div></div>
+    <div class="card"><div class="card-head"><div class="card-title">۱. مشخصات</div></div>
+      <div class="row c2"><div class="field"><label class="f">نام (اختیاری)</label><input type="text" data-bind="profile.name" value="${esc(p.name)}" placeholder="مثلاً سارا"></div><div class="field"><label class="f">پایه</label><select data-bind="profile.grade">${['دهم','یازدهم','دوازدهم','فارغ‌التحصیل'].map(g=>`<option ${p.grade===g?'selected':''}>${g}</option>`).join('')}</select></div></div>
+      <div class="row c2" style="margin-top:14px"><div class="field"><label class="f">رشته</label><select data-bind="profile.field">${['تجربی','ریاضی','انسانی','هنر','زبان'].map(g=>`<option ${p.field===g?'selected':''}>${g}</option>`).join('')}</select></div><div class="field"><label class="f">سبک برنامه</label><select data-bind="profile.restStyle">${['سبک','متعادل','فشرده'].map(g=>`<option ${p.restStyle===g?'selected':''}>${g}</option>`).join('')}</select></div></div>
+      <div class="field" style="margin-top:14px"><label class="f">تاریخ کنکور یا آزمون هدف</label>${jalaliSelects('exam')}</div>
+      <div class="field" style="margin-top:14px"><label class="f">هدف‌هایت (اختیاری)</label><textarea data-bind="profile.goal" placeholder="مثلاً: رساندن درصد ریاضی به بالای ۵۰٪...">${esc(p.goal)}</textarea></div>
+    </div>
+    <div class="card"><div class="card-head"><div><div class="card-title">۲. درس‌ها و تسلط</div><div class="card-sub">۱ = خیلی ضعیف، ۵ = خیلی مسلط</div></div><button class="btn sm soft" data-act="planner-add-subject">افزودن</button></div>${plannerDraftSubjects.map(s=>subjectRowHTML(s)).join('')}</div>
+    <div class="card"><div class="card-head"><div><div class="card-title">۳. ساعت‌های آزاد هفته</div><div class="card-sub">چند ساعت در هر روز می‌توانی مطالعه کنی؟</div></div></div>${WEEK_FA.map((w,i)=>`<div class="avail-row"><div class="nm">${w}</div><input type="range" min="0" max="12" step="0.5" value="${av[i]??3}" data-avail="${i}"><div class="vl" data-avail-out="${i}">${fa(av[i]??3)} ساعت</div></div>`).join('')}</div>
+    <div class="card"><div class="btn-row"><button class="btn ai" data-act="build-plan">✨ ساخت برنامه</button><button class="btn ghost" data-act="planner-reset">بازنشانی</button></div><div class="soft-note" style="margin-top:12px">برنامه با احترام به استراحت، تنوع بین درس‌ها و مرور فاصله‌دار چیده می‌شود.</div></div>
+  </div>`;
+}
+function subjectRowHTML(s){return `<div class="subject-row" data-sid="${s.id}"><input type="text" placeholder="نام درس" value="${esc(s.name)}" data-subj-name="${esc(s.id)}"><select data-subj-mastery="${s.id}">${[1,2,3,4,5].map(m=>`<option value="${m}" ${s.mastery===m?'selected':''}>تسلط ${fa(m)}</option>`).join('')}</select><button class="icon-btn" data-act="planner-del-subject" data-id="${s.id}" aria-label="حذف">✕</button></div>`}
+function jalaliSelects(prefix){const now=new Date();const j=gregorianToJalaali(state.profile.examDate?parseKey(state.profile.examDate):addDays(now,180));const years=[];const curY=gregorianToJalaali(now).jy;for(let y=curY;y<=curY+3;y++)years.push(y);return `<div class="row c3"><select id="${prefix}Day">${Array.from({length:31},(_,i)=>i+1).map(d=>`<option value="${d}" ${j.jd===d?'selected':''}>${fa(d)}</option>`).join('')}</select><select id="${prefix}Month">${J_MONTHS.map((m,i)=>`<option value="${i+1}" ${j.jm===i+1?'selected':''}>${m}</option>`).join('')}</select><select id="${prefix}Year">${years.map(y=>`<option value="${y}" ${j.jy===y?'selected':''}>${fa(y)}</option>`).join('')}</select></div>`}
+function readJalali(prefix){const d=+document.getElementById(prefix+'Day').value;const m=+document.getElementById(prefix+'Month').value;const y=+document.getElementById(prefix+'Year').value;const maxD=m<=6?31:30;return jalaaliToGregorian(y,m,Math.min(d,maxD))}
+
+function viewStudy(){
+  const subs=state.subjects;const sessions=state.sessions.slice().sort((a,b)=>b.date.localeCompare(a.date)).slice(0,15);
+  const bySubject={};state.sessions.forEach(s=>{if(!bySubject[s.subject])bySubject[s.subject]={minutes:0,tests:0,correct:0};bySubject[s.subject].minutes+=s.minutes;bySubject[s.subject].tests+=s.tests||0;bySubject[s.subject].correct+=s.correct||0});
+  const maxMin=Math.max(1,...Object.values(bySubject).map(v=>v.minutes));
+  const tk=todayKey();const upcoming=state.tasks.filter(t=>t.type==='مرور'&&t.status!=='done'&&t.date>=tk).sort((a,b)=>a.date.localeCompare(b.date)).slice(0,8);
+  return `<div class="grid grid-2">
+    <div class="card"><div class="card-head"><div class="card-title">ثبت جلسهٔ مطالعه</div></div>${subs.length?`
+      <div class="row c2"><div class="field"><label class="f">درس</label><select id="sSubject">${subs.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('')}</select></div><div class="field"><label class="f">مدت (دقیقه)</label><input type="number" id="sMinutes" min="5" max="600" step="5" value="60" inputmode="numeric"></div></div>
+      <div class="row c2" style="margin-top:14px"><div class="field"><label class="f">تعداد تست</label><input type="number" id="sTests" min="0" value="0" inputmode="numeric"></div><div class="field"><label class="f">پاسخ درست</label><input type="number" id="sCorrect" min="0" value="0" inputmode="numeric"></div></div>
+      <div class="field" style="margin-top:14px"><label class="f">مبحث‌های نیازمند مرور</label><input type="text" id="sTopics" placeholder="با ویرگول جدا کن: مشتق، کاربرد مشتق"></div>
+      <div class="btn-row" style="margin-top:16px"><button class="btn" data-act="save-session">ثبت جلسه</button></div>
+      <div class="soft-note" style="margin-top:12px">برای مبحث‌هایی که می‌نویسی، یادآور مرور ۲ و ۷ روز بعد ساخته می‌شود.</div>
+      `:`<div class="empty"><div class="em">📚</div>اول درس‌هایت را در برنامه‌ریز وارد کن.</div>`}</div>
+    <div class="card"><div class="card-head"><div class="card-title">پیشرفت هر درس</div><div class="card-sub">مجموع دقایق ثبت‌شده</div></div>${Object.keys(bySubject).length?Object.entries(bySubject).map(([name,v])=>`<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px;gap:8px"><span style="font-weight:600;overflow:hidden;text-overflow:ellipsis">${esc(name)}</span><span style="color:var(--muted);white-space:nowrap">${fa(v.minutes)} دقیقه${v.tests?' • '+fa(Math.round(v.correct/v.tests*100))+'٪':''}</span></div><div class="bar"><i style="width:${Math.round(v.minutes/maxMin*100)}%"></i></div></div>`).join(''):`<div class="empty" style="padding:16px"><div class="em">📈</div>هنوز جلسه‌ای ثبت نشده.</div>`}</div>
+    <div class="card"><div class="card-head"><div class="card-title">یادآورهای مرور</div></div>${upcoming.length?upcoming.map(t=>`<div class="list-item"><div style="min-width:0"><div style="font-weight:600">${esc(t.subject)} — ${esc(t.topic)}</div><div class="l">${FMT.dmy.format(parseKey(t.date))}</div></div><span class="pill ${t.date===tk?'orange':'teal'}">${t.date===tk?'امروز':FMT.wd.format(parseKey(t.date))}</span></div>`).join(''):`<div class="empty" style="padding:16px"><div class="em">🔔</div>یادآور مروری در پیش نیست.</div>`}</div>
+    <div class="card"><div class="card-head"><div class="card-title">تاریخچهٔ مطالعه</div></div>${sessions.length?sessions.map(s=>`<div class="list-item"><div style="min-width:0"><div style="font-weight:600">${esc(s.subject)}</div><div class="l">${FMT.dmy.format(parseKey(s.date))} • ${fa(s.minutes)} دقیقه${s.tests?' • '+fa(s.tests)+' تست':''}</div></div>${s.tests?`<span class="pill teal">${fa(Math.round(s.correct/s.tests*100))}٪</span>`:''}</div>`).join(''):`<div class="empty" style="padding:16px"><div class="em">🗂️</div>تاریخچه خالی است.</div>`}</div>
+  </div>`;
+}
+
+let focusTimer={running:false,mode:'focus',remain:25*60,total:25*60,subjectId:'',handle:null};
+function viewFocus(){
+  const subs=state.subjects;if(!focusTimer.subjectId&&subs[0])focusTimer.subjectId=subs[0].id;
+  return `<div class="grid" style="max-width:620px;margin:0 auto">
+    <div class="card focus-card"><div class="focus-modes"><button data-act="focus-mode" data-mode="25" data-type="focus" class="${focusTimer.mode==='focus'&&focusTimer.total===1500?'active':''}">۲۵ دقیقه</button><button data-act="focus-mode" data-mode="50" data-type="focus" class="${focusTimer.mode==='focus'&&focusTimer.total===3000?'active':''}">۵۰ دقیقه</button><button data-act="focus-mode" data-mode="5" data-type="break" class="${focusTimer.mode==='break'?'active':''}">استراحت</button></div>
+      <div class="focus-time" id="focusTime">۲۵:۰۰</div>
+      <div class="bar" style="max-width:320px;margin:0 auto 20px"><i id="focusBar" style="width:0%"></i></div>
+      ${focusTimer.mode==='focus'&&subs.length?`<div class="field" style="max-width:320px;margin:0 auto 18px"><label class="f">در حال مطالعهٔ</label><select id="focusSubject">${subs.map(s=>`<option value="${s.id}" ${focusTimer.subjectId===s.id?'selected':''}>${esc(s.name)}</option>`).join('')}</select></div>`:''}
+      <div class="btn-row" style="justify-content:center"><button class="btn" id="focusStart" data-act="focus-toggle">${focusTimer.running?'توقف':'شروع'}</button><button class="btn ghost" data-act="focus-reset">بازنشانی</button></div>
+      <p style="color:var(--muted);font-size:12.5px;margin-top:16px">این صفحه ساده نگه داشته شده تا حواست پرت نشود.</p>
+    </div>
+    <div class="card"><div class="card-head"><div class="card-title">جلسه‌های امروز</div></div>${(()=>{const tk=todayKey();const list=state.sessions.filter(s=>s.date===tk);if(!list.length)return`<div class="empty" style="padding:14px"><div class="em">⏳</div>امروز هنوز جلسه‌ای ثبت نشده.</div>`;return list.map(s=>`<div class="list-item"><div><div style="font-weight:600">${esc(s.subject)}</div><div class="l">${fa(s.minutes)} دقیقه</div></div><span class="pill teal">ثبت شد</span></div>`).join('')})()}</div>
+  </div>`;
+}
+function updateFocusDisplay(){const el=document.getElementById('focusTime');if(!el)return;const m=Math.floor(focusTimer.remain/60);const s=focusTimer.remain%60;el.textContent=fa(String(m).padStart(2,'0'))+':'+fa(String(s).padStart(2,'0'));const bar=document.getElementById('focusBar');if(bar){const pct=focusTimer.total?((focusTimer.total-focusTimer.remain)/focusTimer.total*100):0;bar.style.width=pct+'%'}const btn=document.getElementById('focusStart');if(btn)btn.textContent=focusTimer.running?'توقف':'شروع'}
+function focusTick(){if(!focusTimer.running)return;focusTimer.remain--;if(focusTimer.remain<=0){focusTimer.running=false;clearInterval(focusTimer.handle);focusTimer.handle=null;finishFocusSession();return}updateFocusDisplay()}
+function finishFocusSession(){const mins=Math.round(focusTimer.total/60);if(focusTimer.mode==='focus'){const sid=focusTimer.subjectId;const subj=state.subjects.find(s=>s.id===sid);if(subj){state.sessions.push({id:uid(),date:todayKey(),subjectId:sid,subject:subj.name,minutes:mins,tests:0,correct:0,topics:[]});save();toast('یک جلسهٔ '+fa(mins)+' دقیقه‌ای ثبت شد 🌿')}}else{toast('استراحت تمام شد. آماده‌ای؟')}focusTimer.remain=focusTimer.total;render()}
+
+function viewSettings(){
+  const p=state.profile,ai=state.ai;
+  const modelSuggestions=ai.mode==='gemini'?['gemini-1.5-flash','gemini-2.0-flash','gemini-1.5-pro']:['openrouter/free','meta-llama/llama-3.2-3b-instruct:free','google/gemini-flash-1.5-8b','gpt-4o-mini','gpt-4o','deepseek-chat'];
+  const builtinOn=ai.mode==='builtin';
+  const realReady=!builtinOn&&!!ai.apiKey;
+  return `<div class="grid grid-2">
+    <div class="card"><div class="card-head"><div class="card-title">اطلاعات شخصی</div></div>
+      <div class="row c2"><div class="field"><label class="f">نام</label><input type="text" data-bind="profile.name" value="${esc(p.name)}"></div><div class="field"><label class="f">پایه</label><select data-bind="profile.grade">${['دهم','یازدهم','دوازدهم','فارغ‌التحصیل'].map(g=>`<option ${p.grade===g?'selected':''}>${g}</option>`).join('')}</select></div></div>
+      <div class="row c2" style="margin-top:14px"><div class="field"><label class="f">رشته</label><select data-bind="profile.field">${['تجربی','ریاضی','انسانی','هنر','زبان'].map(g=>`<option ${p.field===g?'selected':''}>${g}</option>`).join('')}</select></div><div class="field"><label class="f">سبک برنامه</label><select data-bind="profile.restStyle">${['سبک','متعادل','فشرده'].map(g=>`<option ${p.restStyle===g?'selected':''}>${g}</option>`).join('')}</select></div></div>
+      <div class="field" style="margin-top:14px"><label class="f">تاریخ آزمون هدف</label>${jalaliSelects('exam')}</div>
+      <div class="btn-row" style="margin-top:16px"><button class="btn" data-act="save-settings">ذخیره</button></div>
+    </div>
+    <div class="card"><div class="card-head"><div class="card-title">لحن یادآوری‌ها</div></div>
+      <div class="chips">${['آرام','جدی','تشویقی'].map(t=>`<button class="chip ${p.tone===t?'on':''}" data-act="set-tone" data-tone="${t}">${t}</button>`).join('')}</div>
+      <div class="soft-note" style="margin-top:14px">${p.tone==='جدی'?'لحن جدی: «برنامهٔ امروز آماده است. با تمرکز پیش برو.»':p.tone==='تشویقی'?'لحن تشویقی: «آفرین! هر قدم کوچک تو را جلوتر می‌برد.»':'لحن آرام: «امروز فقط قدم بعدی مهم است، نه کل مسیر.»'}</div>
+      <div class="divider"></div><div class="card-head" style="margin-bottom:10px"><div class="card-title">حالت نمایش</div></div>
+      <div class="chips"><button class="chip ${state.theme==='light'?'on':''}" data-act="set-theme" data-theme="light">🌙 روشن</button><button class="chip ${state.theme==='dark'?'on':''}" data-act="set-theme" data-theme="dark">☀️ تاریک</button></div>
+    </div>
+
+    <!-- AI CARD -->
+    <div class="card" style="grid-column:1/-1">
+      <div class="card-head">
+        <div><div class="card-title">هوش مصنوعی</div><div class="card-sub">اتصال به LLM واقعی برای برنامه‌ریزی دقیق‌تر و تحلیل هفتگی</div></div>
+        <span class="pill ${ai.enabled?(realReady?'ai':'teal'):'grey'}">${ai.enabled?(realReady?'LLM فعال':'درون‌ساخت'):'خاموش'}</span>
+      </div>
+
+      <div class="ai-note">
+        ✨ <b>موتور درون‌ساخت</b> همیشه کار می‌کند و به هیچ کلیدی نیاز ندارد.
+        برای دقت بیشتر، می‌توانی یک کلید رایگان از <b>OpenRouter</b> بگیری و در بخش زیر وارد کنی.
+        کلید فقط روی همین دستگاه ذخیره می‌شود.
+      </div>
+
+      <div class="row c2" style="margin-top:16px">
+        <div class="field">
+          <label class="f">حالت هوش مصنوعی</label>
+          <select id="aiMode">
+            <option value="builtin" ${ai.mode==='builtin'?'selected':''}>درون‌ساخت (بدون کلید)</option>
+            <option value="openai"  ${ai.mode==='openai'?'selected':''}>OpenAI-compatible / OpenRouter</option>
+            <option value="gemini"  ${ai.mode==='gemini'?'selected':''}>Google Gemini</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="f">وضعیت</label>
+          <div class="chips">
+            <button class="chip ${ai.enabled?'on':''}" data-act="toggle-ai">${ai.enabled?'روشن':'خاموش'}</button>
+          </div>
+        </div>
+      </div>
+
+      ${!builtinOn?`
+      <div class="field" style="margin-top:14px">
+        <label class="f">آدرس پایه</label>
+        <input type="text" data-bind="ai.baseUrl" value="${esc(ai.baseUrl)}" placeholder="https://openrouter.ai/api/v1" inputmode="url">
+      </div>
+      <div class="row c2" style="margin-top:14px">
+        <div class="field">
+          <label class="f">کلید API</label>
+          <input type="password" data-bind="ai.apiKey" value="${esc(ai.apiKey)}" placeholder="${ai.mode==='gemini'?'AIza...':'sk-or-...'}">
+        </div>
+        <div class="field">
+          <label class="f">مدل</label>
+          <input type="text" list="modelList" data-bind="ai.model" value="${esc(ai.model)}">
+          <datalist id="modelList">${modelSuggestions.map(m=>`<option value="${m}"></option>`).join('')}</datalist>
+        </div>
+      </div>
+      ${ai.lastError?`<div class="warn-note" style="margin-top:14px">آخرین خطا: ${esc(String(ai.lastError).slice(0,180))}</div>`:''}
+      <div class="btn-row" style="margin-top:16px">
+        <button class="btn" data-act="test-ai">آزمایش اتصال</button>
+      </div>
+      `:`
+      <div class="soft-note" style="margin-top:14px">
+        حالت درون‌ساخت: موتور قاعده‌محور تقویت‌شده. برای LLM واقعی، حالت را به OpenRouter یا Gemini تغییر بده.
+      </div>`}
+
+      <div class="btn-row" style="margin-top:16px">
+        <button class="btn ai" data-act="ai-insight">✨ تحلیل هفتگی</button>
+      </div>
+
+      ${ai.lastUsedAt?`<div class="card-sub" style="margin-top:12px">آخرین استفاده: ${FMT.dmy.format(new Date(ai.lastUsedAt))}</div>`:''}
+    </div>
+
+    <div class="card"><div class="card-head"><div><div class="card-title">حریم خصوصی</div><div class="card-sub">فقط با انتخاب صریح تو</div></div></div>
+      <div class="list-item"><div><div style="font-weight:600">اشتراک‌گذاری گزارش</div><div class="l">${state.settings.share?'فعال است':'غیرفعال است'}</div></div><button class="btn sm ${state.settings.share?'orange':'soft'}" data-act="toggle-share">${state.settings.share?'غیرفعال':'فعال'}</button></div>
+      <div class="btn-row" style="margin-top:14px"><button class="btn ghost" data-act="make-report">ساخت گزارش</button></div>
+    </div>
+
+    <div class="card"><div class="card-head"><div class="card-title">مدیریت برنامه</div></div>
+      <div class="btn-row"><button class="btn soft" data-act="rebuild-plan">بازسازی برنامه</button><button class="btn ghost" data-act="clear-tasks">پاک کردن انجام‌نشده‌ها</button><button class="btn ghost" style="color:var(--rose)" data-act="wipe">پاک کردن همه</button></div>
+      <div class="warn-note" style="margin-top:14px">داده‌ها فقط روی همین دستگاه ذخیره می‌شوند.</div>
+    </div>
+  </div>`;
+}
+
+let onbStep=0;
+let onbSubjects=[{id:uid(),name:'',mastery:3},{id:uid(),name:'',mastery:3}];
+function viewOnboarding(){
+  const stepHTML=[
+    ()=>`<div class="onb-top"><div class="onb-logo">${logoSVG('onb')}</div><h1>هم‌مسیر</h1><div class="slg">برنامه‌ای که با تو پیش می‌رود.</div></div>
+      <div class="card"><p style="font-size:14.5px;color:var(--ink2)">سلام 🌿 هم‌مسیر به تو کمک می‌کند بر اساس ساعت‌های آزادت، درس‌های قوی و ضعیفت و تاریخ کنکور، یک برنامهٔ واقع‌بینانه و آرام داشته باشی.</p><div class="divider"></div>
+        <div class="list-item"><div>🌱 برنامهٔ شخصی و واقع‌بینانه</div></div><div class="list-item"><div>📖 مرور فاصله‌دار و یادآورها</div></div><div class="list-item"><div>🔄 بازتنظیم خودکار در صورت عقب افتادن</div></div><div class="list-item"><div>✨ موتور هوشمند + امکان اتصال به LLM</div></div><div class="list-item"><div>🌙 حالت روشن و تاریک</div></div><div class="list-item"><div>📱 قابل نصب روی گوشی</div></div>
+        <div class="btn-row" style="margin-top:18px"><button class="btn" data-act="onb-next">شروع کنیم</button><button class="btn ghost" data-act="load-demo">نمونهٔ آماده</button></div>
+      </div>`,
+    ()=>`<div class="onb-top"><h1 style="font-size:20px">کمی دربارهٔ خودت</h1></div><div class="card">
+      <div class="field"><label class="f">اسمت چیه؟ (اختیاری)</label><input type="text" data-bind="profile.name" value="${esc(state.profile.name)}" placeholder="مثلاً سارا"></div>
+      <div class="row c2" style="margin-top:14px"><div class="field"><label class="f">پایه</label><select data-bind="profile.grade">${['دهم','یازدهم','دوازدهم','فارغ‌التحصیل'].map(g=>`<option ${state.profile.grade===g?'selected':''}>${g}</option>`).join('')}</select></div><div class="field"><label class="f">رشته</label><select data-bind="profile.field">${['تجربی','ریاضی','انسانی','هنر','زبان'].map(g=>`<option ${state.profile.field===g?'selected':''}>${g}</option>`).join('')}</select></div></div>
+      <div class="field" style="margin-top:14px"><label class="f">تاریخ کنکور یا آزمون هدفت</label>${jalaliSelects('exam')}</div>
+      <div class="btn-row" style="margin-top:18px"><button class="btn" data-act="onb-next">ادامه</button><button class="btn ghost" data-act="onb-back">قبلی</button></div>
+    </div>`,
+    ()=>`<div class="onb-top"><h1 style="font-size:20px">درس‌ها و تسلطت</h1><div class="slg" style="color:var(--muted);font-size:13px">۱ = خیلی ضعیف، ۵ = خیلی مسلط</div></div>
+      <div class="card"><div id="onbSubjects">${onbSubjects.map(s=>subjectRowHTML(s).replace(/data-act="planner-del-subject"/g,'data-act="onb-del-subject"')).join('')}</div>
+        <div class="btn-row" style="margin-top:14px"><button class="btn sm soft" data-act="onb-add-subject">افزودن درس</button></div>
+        <div class="btn-row" style="margin-top:18px"><button class="btn" data-act="onb-next">ادامه</button><button class="btn ghost" data-act="onb-back">قبلی</button></div>
+      </div>`,
+    ()=>`<div class="onb-top"><h1 style="font-size:20px">ساعت‌های آزادت</h1><div class="slg" style="color:var(--muted);font-size:13px">واقع‌بینانه بگو؛ برنامه هم واقع‌بینانه می‌شود.</div></div>
+      <div class="card">${WEEK_FA.map((w,i)=>`<div class="avail-row"><div class="nm">${w}</div><input type="range" min="0" max="12" step="0.5" value="${state.availability[i]??3}" data-avail="${i}"><div class="vl" data-avail-out="${i}">${fa(state.availability[i]??3)} ساعت</div></div>`).join('')}
+        <div class="field" style="margin-top:18px"><label class="f">سبک برنامه</label><div class="chips">${['سبک','متعادل','فشرده'].map(g=>`<button class="chip ${state.profile.restStyle===g?'on':''}" data-act="set-rest" data-rest="${g}">${g}</button>`).join('')}</div></div>
+        <div class="btn-row" style="margin-top:18px"><button class="btn" data-act="onb-next">ادامه</button><button class="btn ghost" data-act="onb-back">قبلی</button></div>
+      </div>`,
+    ()=>`<div class="onb-top"><h1 style="font-size:20px">هدفت چیه؟</h1><div class="slg" style="color:var(--muted);font-size:13px">اختیاری، ولی به چیدن برنامه کمک می‌کند.</div></div>
+      <div class="card">
+        <div class="field"><label class="f">هدف‌هایت</label><textarea data-bind="profile.goal" placeholder="مثلاً: بالای ۵۰٪ ریاضی، منظم شدن مطالعه...">${esc(state.profile.goal)}</textarea></div>
+        <div class="field" style="margin-top:14px"><label class="f">لحن یادآوری‌ها</label><div class="chips">${['آرام','جدی','تشویقی'].map(t=>`<button class="chip ${state.profile.tone===t?'on':''}" data-act="set-tone" data-tone="${t}">${t}</button>`).join('')}</div></div>
+        <div class="ai-note" style="margin-top:16px">✨ موتور هوشمند از قبل فعال است. بعد از ساخت برنامه، اگر خواستی می‌توانی از تنظیمات به یک LLM واقعی هم وصل شوی.</div>
+        <div class="btn-row" style="margin-top:20px"><button class="btn" data-act="onb-finish">ساخت برنامه</button><button class="btn ghost" data-act="onb-back">قبلی</button></div>
+      </div>`
+  ];
+  return `<div class="onb"><div class="steps">${[0,1,2,3,4].map(i=>`<i class="${i<=onbStep?'on':''}"></i>`).join('')}</div>${stepHTML[onbStep]()}</div>`;
+}
+
+/* ================= رویدادها ================= */
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;const btn=document.getElementById('installBtn');if(btn)btn.classList.add('show')});
+
+document.addEventListener('click',async e=>{
+  const el=e.target.closest('[data-act]');if(!el)return;const act=el.dataset.act;
+  switch(act){
+    case 'route':state.route=el.dataset.route;save();render();window.scrollTo({top:0,behavior:'smooth'});break;
+    case 'close-modal':closeModal();break;
+    case 'toggle-theme':state.theme=state.theme==='dark'?'light':'dark';save();applyTheme();break;
+    case 'set-theme':state.theme=el.dataset.theme;save();applyTheme();render();break;
+    case 'install-app':if(deferredPrompt){deferredPrompt.prompt();const{outcome}=await deferredPrompt.userChoice;if(outcome==='accepted'){deferredPrompt=null;const btn=document.getElementById('installBtn');if(btn)btn.classList.remove('show');toast('هم‌مسیر نصب شد 🎉')}}else{openModal('نصب هم‌مسیر',`<p style="font-size:14px;color:var(--ink2);line-height:2"><b>در آیفون (Safari):</b><br>دکمهٔ اشتراک‌گذاری (مربع با فلش رو به بالا) را بزن و گزینهٔ «افزودن به صفحهٔ اصلی» را انتخاب کن.<br><br><b>در اندروید (Chrome):</b><br>منوی سه‌نقطه را باز کن و «نصب برنامه» یا «افزودن به صفحهٔ اصلی» را بزن.</p>`,'<button class="btn ghost" data-act="close-modal">بستن</button>')}break;
+
+    case 'onb-next':if(onbStep===2)collectOnbSubjects();onbStep=Math.min(4,onbStep+1);render();break;
+    case 'onb-back':onbStep=Math.max(0,onbStep-1);render();break;
+    case 'onb-add-subject':collectOnbSubjects();onbSubjects.push({id:uid(),name:'',mastery:3});render();break;
+    case 'onb-del-subject':collectOnbSubjects();onbSubjects=onbSubjects.filter(s=>s.id!==el.dataset.id);if(!onbSubjects.length)onbSubjects=[{id:uid(),name:'',mastery:3}];render();break;
+    case 'set-rest':state.profile.restStyle=el.dataset.rest;save();render();break;
+    case 'onb-finish':await finishOnboarding();break;
+
+    case 'planner-add-subject':plannerDraftSubjects.push({id:uid(),name:'',mastery:3});render();break;
+    case 'planner-del-subject':plannerDraftSubjects=plannerDraftSubjects.filter(s=>s.id!==el.dataset.id);if(!plannerDraftSubjects.length)plannerDraftSubjects=[{id:uid(),name:'',mastery:3}];render();break;
+    case 'planner-reset':plannerDraftSubjects=null;render();break;
+    case 'build-plan':await buildPlanFromPlanner();break;
+
+    case 'week-move':calWeekStart=addDays(calWeekStart,(+el.dataset.dir)*7);render();break;
+    case 'week-today':{const t=sod(new Date());calWeekStart=addDays(t,-faIdxOf(t));calSelected=todayKey();render();break}
+    case 'select-day':calSelected=el.dataset.key;render();break;
+    case 'toggle-task':toggleTask(el.dataset.id);break;
+    case 'mark-missed':markMissed(el.dataset.id);break;
+    case 'open-move':openMoveModal(el.dataset.id);break;
+    case 'move-to':moveTask(el.dataset.id,el.dataset.key);break;
+    case 'open-add-task':openAddTaskModal(el.dataset.key);break;
+    case 'add-task-save':addTaskFromModal();break;
+
+    case 'open-reschedule':await openRescheduleModal();break;
+    case 'apply-reschedule':applyReschedule();break;
+    case 'save-session':saveSession();break;
+
+    case 'focus-mode':{clearInterval(focusTimer.handle);focusTimer.running=false;focusTimer.mode=el.dataset.type;focusTimer.total=(+el.dataset.mode)*60;focusTimer.remain=(+el.dataset.mode)*60;render();break}
+    case 'focus-toggle':if(focusTimer.running){focusTimer.running=false;clearInterval(focusTimer.handle);focusTimer.handle=null}else{focusTimer.running=true;focusTimer.handle=setInterval(focusTick,1000)}updateFocusDisplay();break;
+    case 'focus-reset':clearInterval(focusTimer.handle);focusTimer.handle=null;focusTimer.running=false;focusTimer.remain=focusTimer.total;updateFocusDisplay();break;
+    case 'start-focus':focusTimer.subjectId=el.dataset.subject||'';state.route='focus';save();render();toast('آماده‌ای؟ دکمهٔ شروع را بزن.');break;
+
+    case 'toggle-ai':state.ai.enabled=!state.ai.enabled;save();render();toast(state.ai.enabled?'هوش مصنوعی روشن شد.':'هوش مصنوعی خاموش شد.');break;
+    case 'test-ai':await testRealAI();break;
+    case 'ai-insight':await runInsight();break;
+
+    case 'save-settings':state.profile.examDate=keyOf(readJalali('exam'));save();render();toast('اطلاعات ذخیره شد.');break;
+    case 'set-tone':state.profile.tone=el.dataset.tone;save();render();break;
+    case 'toggle-share':state.settings.share=!state.settings.share;save();render();toast(state.settings.share?'اشتراک‌گذاری فعال شد.':'اشتراک‌گذاری غیرفعال شد.');break;
+    case 'make-report':makeReport();break;
+    case 'rebuild-plan':await rebuildPlan();break;
+    case 'clear-tasks':state.tasks=state.tasks.filter(t=>t.status==='done');save();render();toast('کارهای انجام‌نشده پاک شد.');break;
+    case 'wipe':if(confirm('همهٔ داده‌ها پاک شود؟ این کار برگشت‌پذیر نیست.')){localStorage.removeItem(LS_KEY);state=defaultState();onbStep=0;onbSubjects=[{id:uid(),name:'',mastery:3},{id:uid(),name:'',mastery:3}];plannerDraftSubjects=null;calWeekStart=null;calSelected=null;applyTheme();render();toast('همه‌چیز از نو شروع شد.')}break;
+    case 'load-demo':loadDemo();break;
+  }
+});
+
+document.addEventListener('input',e=>{
+  const el=e.target;
+  if(el.dataset.avail!==undefined){state.availability[el.dataset.avail]=parseFloat(el.value);const out=document.querySelector(`[data-avail-out="${el.dataset.avail}"]`);if(out)out.textContent=fa(el.value)+' ساعت';save();return}
+  if(el.dataset.bind){const path=el.dataset.bind.split('.');if(path.length===2)state[path[0]][path[1]]=el.value;save();return}
+  if(el.dataset.subjName){const s=(state.route==='planner'?plannerDraftSubjects:onbSubjects).find(x=>x.id===el.dataset.subjName);if(s)s.name=el.value;return}
+  if(el.id==='focusSubject'){focusTimer.subjectId=el.value;return}
+});
+document.addEventListener('change',e=>{
+  const el=e.target;
+  if(el.id==='aiMode'){state.ai.mode=el.value;if(el.value==='builtin')state.ai.enabled=true;save();render();return}
+  if(el.dataset.subjMastery){const s=(state.route==='planner'?plannerDraftSubjects:onbSubjects).find(x=>x.id===el.dataset.subjMastery);if(s)s.mastery=+el.value;return}
+  if(el.id==='focusSubject'){focusTimer.subjectId=el.value}
+});
+
+/* ================= منطق عملیات ================= */
+function collectOnbSubjects(){onbSubjects=onbSubjects.map(s=>({...s}))}
+
+async function finishOnboarding(){
+  const valid=onbSubjects.map(s=>({id:s.id,name:(s.name||'').trim(),mastery:s.mastery||3})).filter(s=>s.name);
+  if(!valid.length){toast('حداقل یک درس را وارد کن.');onbStep=2;render();return}
+  state.subjects=valid;state.profile.examDate=keyOf(readJalali('exam'));state.onboarded=true;
+  const tk=todayKey();state.tasks=state.tasks.filter(t=>t.date<tk);
+  setAiBusy(true,'در حال چیدن برنامه‌ات…');
+  try{
+    const{tasks,note}=await aiBuildPlan(14);
+    setAiBusy(false);
+    if(tasks.length){state.tasks=state.tasks.concat(tasks);state.route='dashboard';save();render();toast(note||'برنامه‌ات آماده شد 🌿');return}
+    throw new Error('EMPTY');
+  }catch(err){
+    setAiBusy(false);state.ai.lastError=String(err.message||err);
+    state.tasks=state.tasks.concat(generatePlan(14,new Date()));state.route='dashboard';save();render();toast('برنامه‌ات آماده شد 🌿')
+  }
+}
+
+async function buildPlanFromPlanner(){
+  const valid=plannerDraftSubjects.map(s=>({id:s.id,name:(s.name||'').trim(),mastery:s.mastery||3})).filter(s=>s.name);
+  if(!valid.length){toast('حداقل یک درس وارد کن.');return}
+  state.subjects=valid;state.profile.examDate=keyOf(readJalali('exam'));const tk=todayKey();
+  setAiBusy(true,'در حال چیدن برنامه…');
+  try{
+    const{tasks,note}=await aiBuildPlan(14);
+    setAiBusy(false);
+    if(!tasks.length)throw new Error('EMPTY');
+    state.tasks=state.tasks.filter(t=>t.status==='done'||t.date<tk);state.tasks=state.tasks.concat(tasks);
+    state.route='calendar';calWeekStart=null;calSelected=tk;save();render();toast(note||'برنامه ساخته شد ✨');
+  }catch(err){
+    setAiBusy(false);state.ai.lastError=String(err.message||err);
+    state.tasks=state.tasks.filter(t=>t.status==='done'||t.date<tk);state.tasks=state.tasks.concat(generatePlan(14,new Date()));
+    state.route='calendar';calWeekStart=null;calSelected=tk;save();render();toast('برنامه آماده شد 🌿')
+  }
+}
+
+function toggleTask(id){const t=state.tasks.find(x=>x.id===id);if(!t)return;t.status=t.status==='done'?'todo':'done';save();render();if(t.status==='done')toast(tone('یک قدم دیگر پیش رفتی 🌿','انجام شد. ادامه بده.','آفرین! 🎉'))}
+function markMissed(id){const t=state.tasks.find(x=>x.id===id);if(!t)return;t.status='missed';save();render();toast('ثبت شد. با «بازتنظیم» جایش می‌اندازیم.')}
+function moveTask(id,newKey){const t=state.tasks.find(x=>x.id===id);if(!t)return;t.date=newKey;t.status='todo';t.moved=true;closeModal();save();render();toast('کار به '+FMT.dmy.format(parseKey(newKey))+' منتقل شد.')}
+function openMoveModal(id){const t=state.tasks.find(x=>x.id===id);if(!t)return;const t0=sod(new Date());const options=[];for(let i=0;i<7;i++){const d=addDays(t0,i);const k=keyOf(d);if(k===t.date)continue;options.push(`<button class="btn ghost" style="width:100%;justify-content:space-between;margin-bottom:7px;text-align:right" data-act="move-to" data-id="${id}" data-key="${k}"><span>${FMT.wd.format(d)} ${FMT.dm.format(d)}</span><span style="color:var(--muted);font-size:11.5px">${fa(freeCapacity(k))} دقیقه</span></button>`)}openModal('انتقال «'+esc(t.subject)+'»',options.join('')||'<p>روز دیگری در دسترس نیست.</p>','<button class="btn ghost" data-act="close-modal">بستن</button>')}
+function openAddTaskModal(k){const subs=state.subjects;if(!subs.length){toast('اول درس‌هایت را وارد کن.');return}openModal('افزودن کار برای '+FMT.dmy.format(parseKey(k)),`<div class="field"><label class="f">درس</label><select id="ntSubject">${subs.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('')}</select></div><div class="field"><label class="f">مبحث</label><input type="text" id="ntTopic" placeholder="مثلاً مشتق"></div><div class="row c2" style="margin-top:14px"><div class="field"><label class="f">نوع فعالیت</label><select id="ntType"><option>مطالعهٔ مفهومی</option><option>تست‌زنی</option><option>مرور</option></select></div><div class="field"><label class="f">مدت (دقیقه)</label><input type="number" id="ntMinutes" value="45" min="10" max="180" step="5" inputmode="numeric"></div></div>`,`<button class="btn" data-act="add-task-save" data-key="${k}">افزودن</button><button class="btn ghost" data-act="close-modal">لغو</button>`)}
+function addTaskFromModal(){const sid=document.getElementById('ntSubject').value;const subj=state.subjects.find(s=>s.id===sid);const topic=document.getElementById('ntTopic').value.trim()||'مبحث دلخواه';const type=document.getElementById('ntType').value;const minutes=clamp(+document.getElementById('ntMinutes').value||45,10,180);const k=document.querySelector('[data-act="add-task-save"]').dataset.key;state.tasks.push({id:uid(),date:k,subjectId:sid,subject:subj?subj.name:'درس',topic,type,minutes,status:'todo',reason:'این کار را خودت اضافه کرده‌ای.',moved:false});closeModal();save();render();toast('کار اضافه شد.')}
+
+async function openRescheduleModal(){
+  setAiBusy(true,'در حال چیدن مجدد کارها…');
+  let plan;try{plan=await aiReschedule()}catch(e){plan=buildReschedulePlan()}
+  setAiBusy(false);
+  if(!plan.length){toast('کاری برای بازتنظیم نیست.');return}
+  const rows=plan.map(p=>`<div class="list-item"><div style="min-width:0"><div style="font-weight:600">${esc(p.task.subject)} — ${esc(p.task.topic)}</div><div class="l">${FMT.dmy.format(parseKey(p.from))} ← ${p.to?FMT.dmy.format(parseKey(p.to)):'بدون جای خالی'}</div></div><span class="pill ${p.to?'teal':'rose'}">${p.to?'جابه‌جا':'بعداً'}</span></div>`).join('');
+  openModal('پیش‌نمایش بازتنظیم',`<p style="font-size:13.5px;color:var(--ink2);margin-bottom:12px">این تغییرات فقط پس از تأیید تو اعمال می‌شوند.</p><div class="ai-note" style="margin-bottom:12px">✨ این چیدمان توسط موتور هوشمند پیشنهاد شده است.</div>${rows}`,`<button class="btn" data-act="apply-reschedule">تأیید و ثبت</button><button class="btn ghost" data-act="close-modal">انصراف</button>`);
+}
+function applyReschedule(){const plan=buildReschedulePlan();let n=0;plan.forEach(p=>{if(!p.to)return;const t=state.tasks.find(x=>x.id===p.task.id);if(!t)return;t.date=p.to;t.status='todo';t.moved=true;t.reason='این کار با توجه به ظرفیت روزهای بعد جابه‌جا شد.';n++});closeModal();save();render();toast(n?fa(n)+' کار دوباره چیده شد 🌿':'جای خالی نبود.')}
+
+function saveSession(){const sid=document.getElementById('sSubject').value;const subj=state.subjects.find(s=>s.id===sid);if(!subj)return;const minutes=clamp(+document.getElementById('sMinutes').value||0,5,600);const tests=Math.max(0,+document.getElementById('sTests').value||0);const correct=clamp(+document.getElementById('sCorrect').value||0,0,tests);const topicsRaw=document.getElementById('sTopics').value.trim();const topics=topicsRaw?topicsRaw.split(/[،,]/).map(x=>x.trim()).filter(Boolean):[];state.sessions.push({id:uid(),date:todayKey(),subjectId:sid,subject:subj.name,minutes,tests,correct,topics});if(topics.length)addReviewTasks(sid,subj.name,topics,new Date());save();render();toast('جلسه ثبت شد'+(topics.length?' و یادآور مرور ساخته شد.':'.'))}
+
+async function runInsight(){setAiBusy(true,'در حال تحلیل هفته…');try{const txt=await aiWeeklyInsight();setAiBusy(false);showAIInsight(txt)}catch(e){setAiBusy(false);toast('تحلیل ممکن نشد.')}}
+function showAIInsight(text){openModal('تحلیل هفته',`<div class="ai-note" style="margin-bottom:14px">✨ این تحلیل توسط موتور هوشمند هم‌مسیر تولید شده است.</div><div style="font-size:14px;line-height:2;color:var(--ink2);white-space:pre-wrap">${esc(text)}</div><div class="soft-note" style="margin-top:14px">این تحلیل ممکن است کامل نباشد. تصمیم نهایی با خودت است.</div>`,'<button class="btn ghost" data-act="close-modal">بستن</button>')}
+
+async function testRealAI(){
+  if(state.ai.mode==='builtin'){toast('حالت درون‌ساخت همیشه فعال است.');return}
+  if(!state.ai.apiKey){toast('کلید API را وارد کن.');return}
+  if(!navigator.onLine){toast('اتصال اینترنت برقرار نیست.');return}
+  setAiBusy(true,'در حال آزمایش اتصال…');
+  try{await callRealAI('تو یک دستیار کوتاه‌گو هستی.','فقط بنویس: سلام',{json:false});setAiBusy(false);state.ai.lastError='';state.ai.lastUsedAt=new Date().toISOString();save();render();toast('اتصال موفق بود ✅')}
+  catch(e){setAiBusy(false);state.ai.lastError=String(e.message||e);save();render();toast('اتصال ناموفق: '+String(e.message||e).slice(0,60))}
+}
+
+function makeReport(){
+  if(!state.settings.share){toast('اول اشتراک‌گذاری را فعال کن.');return}
+  const days7=[];for(let i=6;i>=0;i--)days7.push(keyOf(addDays(new Date(),-i)));
+  const wt=state.tasks.filter(t=>days7.includes(t.date));const done=wt.filter(t=>t.status==='done').length;
+  const sessions=state.sessions.filter(s=>days7.includes(s.date));const mins=sessions.reduce((a,s)=>a+s.minutes,0);
+  const tests=sessions.reduce((a,s)=>a+(s.tests||0),0);const correct=sessions.reduce((a,s)=>a+(s.correct||0),0);
+  const text=`گزارش هفتهٔ هم‌مسیر — ${FMT.dmy.format(new Date())}\nکارهای انجام‌شده: ${done} از ${wt.length}\nدقیقهٔ مطالعه: ${mins}\nتست زده‌شده: ${tests}${tests?' (دقت '+Math.round(correct/tests*100)+'٪)':''}\nمرورهای انجام‌شده: ${wt.filter(t=>t.type==='مرور'&&t.status==='done').length}\n${state.profile.examDate?'تا آزمون هدف: '+examLabel():''}`;
+  openModal('متن گزارش',`<textarea style="min-height:180px" readonly>${esc(text)}</textarea><div class="soft-note" style="margin-top:12px">این متن را می‌توانی برای خانواده یا مشاورت بفرستی.</div>`,`<button class="btn" data-act="close-modal" id="copyReportBtn">کپی و بستن</button>`);
+  setTimeout(()=>{const b=document.getElementById('copyReportBtn');if(b)b.addEventListener('click',()=>{navigator.clipboard?.writeText(text).then(()=>toast('کپی شد.')).catch(()=>{})})},0)
+}
+
+async function rebuildPlan(){
+  const tk=todayKey();setAiBusy(true,'در حال بازسازی برنامه…');
+  try{const{tasks,note}=await aiBuildPlan(14);setAiBusy(false);if(!tasks.length)throw new Error('EMPTY');
+    state.tasks=state.tasks.filter(t=>t.status==='done'||t.date<tk);state.tasks=state.tasks.concat(tasks);save();render();toast(note||'برنامه از نو چیده شد.')
+  }catch(err){setAiBusy(false);state.tasks=state.tasks.filter(t=>t.status==='done'||t.date<tk);state.tasks=state.tasks.concat(generatePlan(14,new Date()));save();render();toast('برنامه از نو چیده شد.')}
+}
+
+function loadDemo(){
+  state.profile={name:'سارا',grade:'دوازدهم',field:'تجربی',examDate:keyOf(addDays(new Date(),165)),goal:'رساندن درصد ریاضی و فیزیک به بالای ۵۰٪',restStyle:'متعادل',tone:'آرام'};
+  state.subjects=[{id:uid(),name:'ریاضی',mastery:2},{id:uid(),name:'فیزیک',mastery:2},{id:uid(),name:'شیمی',mastery:4},{id:uid(),name:'زیست',mastery:3},{id:uid(),name:'ادبیات فارسی',mastery:4},{id:uid(),name:'عربی',mastery:2},{id:uid(),name:'دین و زندگی',mastery:5},{id:uid(),name:'زبان انگلیسی',mastery:3}];
+  state.availability={'0':4,'1':3,'2':4,'3':3,'4':4,'5':6,'6':5};
+  state.tasks=[];state.sessions=[];state.onboarded=true;state.route='dashboard';
+  const res=builtinGeneratePlan(14,new Date());state.tasks=res.tasks;
+  const past=state.tasks.filter(t=>t.date<todayKey());past.slice(0,Math.max(0,past.length-3)).forEach(t=>t.status='done');
+  for(let i=1;i<=5;i++){const s=state.subjects[i%state.subjects.length];state.sessions.push({id:uid(),date:keyOf(addDays(new Date(),-i)),subjectId:s.id,subject:s.name,minutes:45+i*10,tests:10+i*3,correct:6+i*2,topics:[]})}
+  onbStep=0;plannerDraftSubjects=null;calWeekStart=null;calSelected=todayKey();save();render();toast('نمونهٔ آماده بارگذاری شد.')
+}
+
+/* ================= آنلاین/آفلاین ================= */
+function updateOnlineStatus(){const banner=document.getElementById('offlineBanner');if(banner)banner.classList.toggle('show',!navigator.onLine)}
+window.addEventListener('online',updateOnlineStatus);window.addEventListener('offline',updateOnlineStatus);
+
+/* ================= Service Worker ================= */
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('./sw.js').then(reg=>{
+      reg.addEventListener('updatefound',()=>{const nw=reg.installing;if(!nw)return;nw.addEventListener('statechange',()=>{if(nw.state==='installed'&&navigator.serviceWorker.controller){toast('نسخهٔ جدید آماده است. صفحه را ببند و باز کن.')}})})
+    }).catch(()=>{})
+  })
+}
+
+/* ================= اجرا ================= */
+render();updateOnlineStatus();
+window.addEventListener('beforeunload',()=>{if(focusTimer.handle)clearInterval(focusTimer.handle)});
+</script>
+</body>
+</html>
